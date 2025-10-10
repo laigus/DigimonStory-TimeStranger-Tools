@@ -1,0 +1,1104 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* 使用可爱字体并提供后备字体，避免网络失败导致显示异常 */
+    font-family: 'ZCOOL KuaiLe', 'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB', Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+    font-size: 2.6em;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.35);
+    letter-spacing: 1px;
+}
+
+.main-content {
+    display: flex;
+    gap: 20px;
+    height: calc(100vh - 150px);
+}
+
+/* 左侧数码宝贝列表样式 */
+.digimon-list {
+    flex: 1;
+    background: white;
+    /* background: rgba(255,255,255,0.18); */
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.search-container {
+    margin-bottom: 20px;
+}
+
+#searchInput {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+#searchInput:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.list-container {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: #667eea #f0f0f0;
+    width: 100%;
+}
+
+.list-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.list-container::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 4px;
+}
+
+.list-container::-webkit-scrollbar-thumb {
+    background: #667eea;
+    border-radius: 4px;
+}
+
+.digimon-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.digimon-item:hover {
+    background: #e3f2fd;
+    border-color: #2196f3;
+    transform: translateY(-2px);
+}
+
+.digimon-item.selected {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
+.digimon-content {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.edit-image-btn {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #667eea;
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    opacity: 0;
+    z-index: 10;
+}
+
+.digimon-item:hover .edit-image-btn {
+    opacity: 1;
+}
+
+.edit-image-btn:hover {
+    background: #5a6fd8;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.digimon-item.selected .edit-image-btn {
+    background: #764ba2;
+    opacity: 1;
+}
+
+.digimon-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 12px;
+    object-fit: cover;
+    border: 2px solid #ddd;
+    transition: border-color 0.3s;
+    flex-shrink: 0;
+}
+
+/* 空白圆圈占位符样式 */
+.empty-placeholder {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 12px;
+    background-color: #f5f5f5;
+    border: 2px solid #ddd;
+    transition: border-color 0.3s;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+/* 为空白圆圈添加一个微妙的内阴影效果 */
+.empty-placeholder::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.digimon-item.selected .digimon-image,
+.digimon-item.selected .empty-placeholder {
+    border-color: white;
+}
+
+.digimon-info {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.digimon-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    letter-spacing: 0.5px;
+}
+
+.digimon-level {
+    font-size: 13px;
+    opacity: 0.8;
+    color: #666;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.digimon-item.selected .digimon-level {
+    color: #e3f2fd;
+}
+
+/* 右侧进化路线图样式 */
+.evolution-chart {
+    flex: 2;
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 标签页导航样式 */
+.tab-navigation {
+    display: flex;
+    border-bottom: 2px solid #f0f0f0;
+    margin-bottom: 20px;
+}
+
+.tab-button {
+    background: none;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.tab-button:hover {
+    color: #667eea;
+    background-color: #f8f9fa;
+}
+
+.tab-button.active {
+    color: #667eea;
+    border-bottom-color: #667eea;
+}
+
+/* 标签页内容样式 */
+.tab-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 60px;
+    position: relative;
+    overflow: hidden;
+}
+
+.tab-pane {
+    flex: 1 1 auto;
+    display: none;
+    height: 100%;
+    overflow: auto;
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100%;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    background: white;
+}
+
+.tab-pane.active {
+    display: block;
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 2;
+}
+
+/* 滑入动画 */
+.tab-pane.slide-in-left {
+    animation: slideInLeft 0.3s;
+}
+.tab-pane.slide-in-right {
+    animation: slideInRight 0.3s;
+}
+
+/* 滑出动画 */
+.tab-pane.slide-out-left {
+    animation: slideOutLeft 0.3s;
+}
+.tab-pane.slide-out-right {
+    animation: slideOutRight 0.3s;
+}
+
+@keyframes slideInLeft {
+    from { transform: translateX(-100%); opacity: 0; }
+    to   { transform: translateX(0); opacity: 1; }
+}
+@keyframes slideInRight {
+    from { transform: translateX(100%); opacity: 0; }
+    to   { transform: translateX(0); opacity: 1; }
+}
+@keyframes slideOutLeft {
+    from { transform: translateX(0); opacity: 1; }
+    to   { transform: translateX(-100%); opacity: 0; }
+}
+@keyframes slideOutRight {
+    from { transform: translateX(0); opacity: 1; }
+    to   { transform: translateX(100%); opacity: 0; }
+}
+
+/* 训练页面样式 */
+.training-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.training-list {
+    flex: 1;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #667eea #f0f0f0;
+    padding-top: 5px;
+}
+
+.training-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.training-list::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 4px;
+}
+
+.training-list::-webkit-scrollbar-thumb {
+    background: #667eea;
+    border-radius: 4px;
+}
+
+.training-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 10px;
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.training-item:hover {
+    border-color: #667eea;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+}
+
+.training-action {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-right: 15px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.training-item:hover .training-action {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.training-action.add-btn {
+    background: #28a745;
+    color: white;
+}
+
+.training-action.add-btn:hover {
+    background: #218838;
+    transform: scale(1.1);
+}
+
+.training-action.remove-btn {
+    background: #dc3545;
+    color: white;
+}
+
+.training-action.remove-btn:hover {
+    background: #c82333;
+    transform: scale(1.1);
+}
+
+.training-label {
+    flex: 0 0 80px;
+    font-weight: 600;
+    color: #495057;
+    text-align: center;
+    padding: 8px 12px;
+    background: #e9ecef;
+    border-radius: 6px;
+    margin-right: 15px;
+}
+
+.training-digimon {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    background: white;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    margin-right: 15px;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.training-digimon:hover {
+    border-color: #667eea;
+}
+
+.training-digimon.empty {
+    color: #6c757d;
+    font-style: italic;
+}
+
+.training-digimon .digimon-image {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+    object-fit: cover;
+}
+
+.training-digimon .digimon-name {
+    font-weight: 500;
+}
+
+.training-digimon .clear-btn {
+    margin-left: auto;
+    background: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.training-digimon .clear-btn:hover {
+    background: #5a6268;
+}
+
+.training-target {
+    flex: 0 0 100px;
+    padding: 8px 12px;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.training-target:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.25);
+}
+
+.chart-container {
+    height: 100%;
+    box-sizing: border-box;
+    overflow: auto;
+    /* 可选：让内容自适应宽度 */
+    width: 100%;
+}
+
+/* 保证evolution-chart区域也自适应 */
+.evolution-chart {
+    flex: 2 1 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-width: 0;
+}
+
+/* 训练容器样式 */
+.training-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.training-container .no-selection {
+    text-align: center;
+    color: #666;
+}
+
+.training-container .no-selection ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.training-container .no-selection li {
+    padding: 8px 0;
+    color: #888;
+    position: relative;
+    padding-left: 20px;
+}
+
+.training-container .no-selection li::before {
+    content: "🔸";
+    position: absolute;
+    left: 0;
+}
+
+.chart-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.no-selection {
+    text-align: center;
+    color: #666;
+}
+
+.evolution-layout {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+    padding: 30px 10px;
+    overflow: visible;
+}
+
+/* 动态宽度分配：当一侧/双方数量较多时给予更多空间 */
+.evolution-layout.wide-right .right-column { flex: 2; }
+.evolution-layout.wide-right .left-column { flex: 1; }
+.evolution-layout.wide-left .left-column { flex: 2; }
+.evolution-layout.wide-left .right-column { flex: 1; }
+.evolution-layout.wide-both .left-column, 
+.evolution-layout.wide-both .right-column { flex: 1.6; }
+.evolution-layout.wide-right .current-digimon,
+.evolution-layout.wide-left .current-digimon,
+.evolution-layout.wide-both .current-digimon { flex: 1.2; }
+
+/* 减少箭头占位空间 */
+.evolution-layout.wide-right .evolution-arrow,
+.evolution-layout.wide-left .evolution-arrow,
+.evolution-layout.wide-both .evolution-arrow { margin: 0 10px; }
+
+.evolution-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    max-height: calc(100% - 40px);
+    overflow-y: auto;
+    overflow-x: visible;
+}
+
+/* 进化/退化列表容器：默认单列，超过4个时切换为两列网格 */
+.evolution-column .cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.evolution-column .cards-container.two-columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(140px, 1fr));
+    gap: 20px 25px; /* 行间20px，列间25px 提高可读性 */
+    align-items: start;
+    width: 100%;
+}
+
+/* 两列模式下卡片自适应宽度并限制最小宽度 */
+.evolution-column .cards-container.two-columns .digimon-card {
+    width: 100%;
+    min-width: 0; /* 允许在窄列下压缩 */
+}
+
+.current-digimon {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.current-digimon .digimon-card {
+    transform: scale(1.2);
+    border: 3px solid #667eea;
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+}
+
+.digimon-card {
+    background: white;
+    border: 2px solid #ddd;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    min-width: 150px;
+}
+
+.digimon-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    border-color: #667eea;
+}
+
+.digimon-card .digimon-image {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 10px auto;
+    border: 3px solid #ddd;
+    transition: border-color 0.3s;
+}
+
+/* 卡片中的空白圆圈样式 */
+.digimon-card .empty-placeholder {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 10px auto;
+    border: 3px solid #ddd;
+    transition: border-color 0.3s;
+    background-color: #f5f5f5;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+}
+
+.digimon-card .empty-placeholder::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.digimon-card:hover .digimon-image,
+.digimon-card:hover .empty-placeholder {
+    border-color: #667eea;
+}
+
+.digimon-card .digimon-name {
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #333;
+    letter-spacing: 0.5px;
+}
+
+.digimon-card .digimon-level {
+    font-size: 12px;
+    color: #666;
+}
+
+.column-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #667eea;
+    margin-bottom: 20px;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.evolution-arrow {
+    font-size: 30px;
+    color: #667eea;
+    margin: 0 20px;
+}
+
+.no-evolution {
+    color: #999;
+    font-style: italic;
+    text-align: center;
+    padding: 20px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .digimon-list {
+        height: 300px;
+    }
+    
+    .evolution-chart {
+        min-height: 400px;
+    }
+    
+    .evolution-layout {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .evolution-arrow {
+        transform: rotate(90deg);
+    }
+    
+    h1 {
+        font-size: 2em;
+    }
+}
+
+/* 加载动画 */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #667eea;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 滚动条美化 */
+.evolution-column::-webkit-scrollbar {
+    width: 6px;
+}
+
+.evolution-column::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 3px;
+}
+
+.evolution-column::-webkit-scrollbar-thumb {
+    background: #667eea;
+    border-radius: 3px;
+}
+
+.chart-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.chart-container::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 4px;
+}
+
+.chart-container::-webkit-scrollbar-thumb {
+    background: #667eea;
+    border-radius: 4px;
+}
+
+
+/* 图片管理模态框样式 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 2% auto;
+    padding: 0;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.close {
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close:hover {
+    color: #ddd;
+}
+
+.modal-body {
+    padding: 25px;
+    max-height: calc(90vh - 80px);
+    overflow-y: auto;
+}
+
+.image-manager {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.current-digimon-info {
+    grid-column: 1 / -1;
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.digimon-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.digimon-info h3 {
+    margin: 0;
+    color: #333;
+    font-size: 1.3em;
+}
+
+.digimon-info p {
+    margin: 5px 0 0 0;
+    color: #666;
+    font-size: 0.9em;
+}
+
+.current-image-preview {
+    text-align: center;
+}
+
+#currentImagePreview {
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+}
+
+.no-image-placeholder {
+    width: 80px;
+    height: 80px;
+    background: #e9ecef;
+    border: 2px dashed #adb5bd;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #6c757d;
+}
+
+.upload-area {
+    background: #f8f9fa;
+    border: 3px dashed #667eea;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.upload-area:hover {
+    border-color: #5a6fd8;
+    background: #e7f3ff;
+}
+
+.upload-area.dragover {
+    border-color: #28a745;
+    background: #d4edda;
+}
+
+.upload-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.upload-icon {
+    font-size: 3em;
+    color: #667eea;
+}
+
+.upload-area p {
+    margin: 0;
+    color: #666;
+}
+
+.upload-hint {
+    font-size: 0.9em;
+    color: #999 !important;
+}
+
+.operation-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-primary {
+    background: #667eea;
+    color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: #5a6fd8;
+}
+
+.btn-success {
+    background: #28a745;
+    color: white;
+}
+
+.btn-success:hover:not(:disabled) {
+    background: #218838;
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-danger:hover:not(:disabled) {
+    background: #c82333;
+}
+
+.btn-warning {
+    background: #ffc107;
+    color: #212529;
+}
+
+.btn-warning:hover:not(:disabled) {
+    background: #e0a800;
+}
+
+.btn-info {
+    background: #17a2b8;
+    color: white;
+}
+
+.btn-info:hover:not(:disabled) {
+    background: #138496;
+}
+
+.save-notice {
+    margin-top: 15px;
+    padding: 12px;
+    background: #e3f2fd;
+    border: 1px solid #bbdefb;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.save-notice small {
+    color: #1976d2;
+    line-height: 1.4;
+}
+
+.save-notice code {
+    background: #fff;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: monospace;
+    color: #d32f2f;
+}
+
+.preview-area {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.preview-area h3 {
+    margin: 0 0 15px 0;
+    color: #333;
+}
+
+.preview-container {
+    text-align: center;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#previewImage {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.preview-placeholder {
+    color: #999;
+    font-style: italic;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        margin: 5% auto;
+    }
+    
+    .image-manager {
+        grid-template-columns: 1fr;
+    }
+    
+    .current-digimon-info {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}

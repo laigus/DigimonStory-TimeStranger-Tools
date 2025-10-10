@@ -1,0 +1,73 @@
+/* 本地字体引入说明：
+ * 已去除文楷与黄油体，新增项目本地字体：圆圆 / 方方。
+ * 仍保留可选：站酷快乐体 / 站酷小微 / 马善政手写体（若在线加载或放入本地可对应添加）。
+ */
+
+@font-face {
+    font-family: 'ZCOOL KuaiLe Local';
+    src: url('fonts/ZCOOLKuaiLe-Regular.woff2') format('woff2');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'ZCOOL XiaoWei Local';
+    src: url('fonts/ZCOOLXiaoWei-Regular.woff2') format('woff2');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ma Shan Zheng Local';
+    src: url('fonts/MaShanZheng-Regular.woff2') format('woff2');
+    font-display: swap;
+}
+
+/* 本地新增字体：圆圆 / 方方 */
+@font-face {
+    font-family: 'YuanYuan';
+    src: url('fonts/圆圆.TTF') format('truetype');
+    font-display: swap;
+}
+@font-face {
+    font-family: 'FangFang';
+    src: url('fonts/方方.ttf') format('truetype');
+    font-display: swap;
+}
+
+/* 通过 data-font 属性控制 body 字体 */
+body[data-font="kuai"] { font-family: 'ZCOOL KuaiLe Local', 'ZCOOL KuaiLe', 'Microsoft YaHei', sans-serif; }
+body[data-font="xiaowei"] { font-family: 'ZCOOL XiaoWei Local', 'ZCOOL XiaoWei', 'Microsoft YaHei', sans-serif; }
+body[data-font="mashan"] { font-family: 'Ma Shan Zheng Local', 'Ma Shan Zheng', 'Microsoft YaHei', cursive, sans-serif; }
+body[data-font="yuanyuan"] { font-family: 'YuanYuan', 'Microsoft YaHei', sans-serif; }
+body[data-font="fangfang"] { font-family: 'FangFang', 'Microsoft YaHei', sans-serif; }
+body[data-font="default"] { font-family: 'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB', Arial, sans-serif; }
+
+/* 字体选择器轻度样式，放在顶栏右侧 */
+.font-selector-wrapper {
+    position: absolute;
+    top: 18px;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.18);
+    padding: 6px 10px;
+    border-radius: 10px;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.font-selector-wrapper label {
+    font-size: 12px;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+#fontSelector {
+    border: 1px solid #fff;
+    background: rgba(255,255,255,0.85);
+    border-radius: 6px;
+    padding: 4px 6px;
+    font-size: 12px;
+    cursor: pointer;
+}
+#fontSelector:focus { outline: none; box-shadow: 0 0 0 2px rgba(255,255,255,0.4); }

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>--</title>
+    <!-- 可爱字体（在线 & 本地） -->
+    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=ZCOOL+XiaoWei&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="fonts.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>--</h1>
+        <div class="font-selector-wrapper">
+            <label for="fontSelector">字体</label>
+            <select id="fontSelector">
+                <option value="default">默认(微软雅黑)</option>
+                <option value="kuai">快乐体</option>
+                <option value="xiaowei">小微体</option>
+                <option value="mashan">手写体</option>
+                <option value="yuanyuan">圆圆</option>
+                <option value="fangfang">方方</option>
+            </select>
+        </div>
+        
+        <div class="main-content">
+            <!-- 左侧数码宝贝列表 -->
+            <div class="digimon-list">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="搜索数码宝贝（支持中文/拼音首字母）">
+                </div>
+                <div class="list-container" id="digimonListContainer">
+                    <!-- 数码宝贝列表将在这里动态生成 -->
+                </div>
+            </div>
+            
+            <!-- 右侧进化路线图 -->
+            <div class="evolution-chart">
+                <!-- 标签页导航 -->
+                <div class="tab-navigation">
+                    <button class="tab-button active" data-tab="evolution">进化</button>
+                    <button class="tab-button" data-tab="training">训练</button>
+                </div>
+                
+                <!-- 标签页内容 -->
+                <div class="tab-content">
+                    <!-- 进化标签页 -->
+                    <div class="tab-pane active" id="evolution-tab">
+                        <div class="chart-container" id="evolutionChart">
+                            <div class="no-selection">
+                                <h3>请选择一个数码宝贝查看进化路线</h3>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 训练标签页 -->
+                    <div class="tab-pane" id="training-tab">
+                        <div class="training-container">
+                            <div class="training-list" id="trainingList">
+                                <!-- 训练项目将在这里动态生成 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 图片管理模态框 -->
+    <div id="imageManagerModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">编辑图片</h2>
+                <span class="close" id="closeModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="image-manager">
+                    <div class="image-operations">
+                        <div class="upload-area" id="uploadArea">
+                            <div class="upload-content">
+                                <div class="upload-icon">📁</div>
+                                <p>拖拽图片到这里或点击选择</p>
+                                <p class="upload-hint">支持 JPG、PNG、GIF、WEBP 格式</p>
+                                <input type="file" id="imageInput" accept="image/*" style="display: none;">
+                                <button type="button" id="selectImageBtn" class="btn btn-primary">选择图片</button>
+                            </div>
+                        </div>
+                        
+                        <div class="operation-buttons">
+                            <button id="saveImageBtn" class="btn btn-success" disabled>保存图片</button>
+                            <div class="save-notice">
+                                <small>💡 图片将保存到浏览器缓存，并自动下载到你的下载文件夹。<br>
+                                请将下载的图片文件移动到项目的 <code>picture</code> 文件夹中以永久保存。</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="preview-area">
+                        <h3>预览</h3>
+                        <div class="preview-container">
+                            <img id="previewImage" src="" alt="预览图片" style="display: none;">
+                            <div id="previewPlaceholder" class="preview-placeholder">
+                                预览区域
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 
+    <script src="js/evolution-chart.js"></script>
+    <script src="js/image-manager.js"></script>
+    <script src="js/tab-manager.js"></script>
+    <script src="js/training-manager.js"></script>
+    <script src="js/main.js"></script>
+    -->
+    <script src="js/digimon-data.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/digimon-list.js"></script>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
