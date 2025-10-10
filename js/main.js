@@ -582,22 +582,30 @@ class TabManager {
 // 初始化标签页管理器
 const tabManager = new TabManager();
 
+const TRAINING_STORAGE_KEY = 'digimon-training-items';
+
 // 训练管理器
 class TrainingManager {
     constructor() {
         this.trainingItems = [];
         this.nextId = 1;
-        this.initializeDefaultItems();
+        const restored = this.loadState();
+        if (!restored) {
+            this.initializeDefaultItems();
+        }
         this.render();
+        if (!restored) {
+            this.saveState();
+        }
     }
 
     initializeDefaultItems() {
-        const defaultLabels = ['HP', 'SP', '攻击', '防御', '敏捷', '智慧', '精神'];
+        const defaultLabels = ['HP', 'SP', '攻击', '防御', '智力', '精神', '敏捷'];
         defaultLabels.forEach(label => {
             this.trainingItems.push({
                 id: this.nextId++,
                 label: label,
-                digimon: null,
+                digimonId: null,
                 target: '',
                 isDefault: true
             });
@@ -621,6 +629,10 @@ class TrainingManager {
         div.className = 'training-item';
         div.dataset.id = item.id;
 
+        const digimon = (item.digimonId !== null && item.digimonId !== undefined)
+            ? digimonMap.get(item.digimonId)
+            : null;
+
         // 创建训练项的基本结构
         const actionBtn = document.createElement('button');
         actionBtn.className = `training-action ${item.isDefault ? 'add-btn' : 'remove-btn'}`;
@@ -638,16 +650,16 @@ class TrainingManager {
         labelDiv.textContent = item.label;
 
         const digimonDiv = document.createElement('div');
-        digimonDiv.className = `training-digimon ${item.digimon ? '' : 'empty'}`;
+        digimonDiv.className = `training-digimon ${digimon ? '' : 'empty'}`;
         digimonDiv.onclick = () => this.selectDigimon(item.id);
 
-        if (item.digimon) {
+        if (digimon) {
             // 创建智能图片元素
-            const imageContainer = createSmartImage(item.digimon, 'digimon-image');
+            const imageContainer = createSmartImage(digimon, 'digimon-image');
             
             const nameSpan = document.createElement('span');
             nameSpan.className = 'digimon-name';
-            nameSpan.textContent = item.digimon.name;
+            nameSpan.textContent = digimon.name;
 
             const clearBtn = document.createElement('button');
             clearBtn.className = 'clear-btn';
@@ -661,14 +673,14 @@ class TrainingManager {
             digimonDiv.appendChild(nameSpan);
             digimonDiv.appendChild(clearBtn);
         } else {
-            digimonDiv.textContent = '点击添加左侧选中的数码宝贝';
+            digimonDiv.textContent = item.digimonId ? '未找到对应的数码宝贝，请重新选择' : '点击添加左侧选中的数码宝贝';
         }
 
         const targetInput = document.createElement('input');
         targetInput.type = 'number';
         targetInput.className = 'training-target';
         targetInput.placeholder = '目标值';
-        targetInput.value = item.target;
+        targetInput.value = item.target ?? '';
         targetInput.onchange = (e) => this.updateTarget(item.id, e.target.value);
 
         // 组装训练项
@@ -687,7 +699,7 @@ class TrainingManager {
         const newItem = {
             id: this.nextId++,
             label: parentItem.label,
-            digimon: null,
+            digimonId: null,
             target: '',
             isDefault: false
         };
@@ -697,11 +709,13 @@ class TrainingManager {
         this.trainingItems.splice(parentIndex + 1, 0, newItem);
 
         this.render();
+        this.saveState();
     }
 
     removeItem(itemId) {
         this.trainingItems = this.trainingItems.filter(item => item.id !== itemId);
         this.render();
+        this.saveState();
     }
 
     selectDigimon(itemId) {
@@ -709,8 +723,9 @@ class TrainingManager {
         if (selectedDigimon) {
             const item = this.trainingItems.find(item => item.id === itemId);
             if (item) {
-                item.digimon = selectedDigimon;
+                item.digimonId = selectedDigimon.id;
                 this.render();
+                this.saveState();
             }
         } else {
             alert('请先在左侧选择一个数码宝贝');
@@ -720,8 +735,9 @@ class TrainingManager {
     clearDigimon(itemId) {
         const item = this.trainingItems.find(item => item.id === itemId);
         if (item) {
-            item.digimon = null;
+            item.digimonId = null;
             this.render();
+            this.saveState();
         }
     }
 
@@ -729,6 +745,64 @@ class TrainingManager {
         const item = this.trainingItems.find(item => item.id === itemId);
         if (item) {
             item.target = value;
+            this.saveState();
+        }
+    }
+
+    saveState() {
+        try {
+            const payload = {
+                nextId: this.nextId,
+                items: this.trainingItems.map(item => ({
+                    id: item.id,
+                    label: item.label,
+                    digimonId: item.digimonId ?? null,
+                    target: item.target ?? '',
+                    isDefault: !!item.isDefault
+                }))
+            };
+            localStorage.setItem(TRAINING_STORAGE_KEY, JSON.stringify(payload));
+        } catch (error) {
+            console.error('保存训练配置失败', error);
+        }
+    }
+
+    loadState() {
+        try {
+            const raw = localStorage.getItem(TRAINING_STORAGE_KEY);
+            if (!raw) return false;
+            const parsed = JSON.parse(raw);
+            if (!parsed || !Array.isArray(parsed.items)) {
+                return false;
+            }
+
+            const items = parsed.items.map((item, index) => {
+                const id = typeof item.id === 'number' ? item.id : this.nextId + index;
+                return {
+                    id,
+                    label: typeof item.label === 'string' ? item.label : '',
+                    digimonId: (typeof item.digimonId === 'number' || item.digimonId === null) ? item.digimonId : null,
+                    target: item.target ?? '',
+                    isDefault: !!item.isDefault
+                };
+            }).filter(item => item.label);
+
+            if (!items.length) {
+                return false;
+            }
+
+            this.trainingItems = items;
+            const maxId = items.reduce((max, item) => Math.max(max, item.id), 0);
+            if (typeof parsed.nextId === 'number' && parsed.nextId > maxId) {
+                this.nextId = parsed.nextId;
+            } else {
+                this.nextId = maxId + 1;
+            }
+
+            return true;
+        } catch (error) {
+            console.error('加载训练配置失败', error);
+            return false;
         }
     }
 }

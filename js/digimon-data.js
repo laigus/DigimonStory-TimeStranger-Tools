@@ -160,7 +160,7 @@ const digimonData = [
         name: "布加兽",
         level: "幼年期Ⅱ",
         image: getDigimonImagePath("布加兽"),
-        evolvesTo: [44, 42, 23, 63, 67], // 乌龟兽, 螃蟹兽, 哥玛兽, 锯齿兽, 碎碟兽
+        evolvesTo: [44, 42, 23, 63, 67], // 乌龟兽, 螃蟹兽, 哥玛兽, 锯齿兽, 砗磲兽
         evolvesFrom: [7]
     },
     {
@@ -549,9 +549,9 @@ const digimonData = [
     },
     {
         id: 67,
-        name: "碎碟兽",
+        name: "砗磲兽",
         level: "成长期",
-        image: getDigimonImagePath("碎碟兽"),
+        image: getDigimonImagePath("砗磲兽"),
         evolvesTo: [122, 123, 144, 142, 171], // 腔棘鱼兽, 贝壳兽, 贝壳鼻涕兽, 章鱼兽, 烂泥兽
         evolvesFrom: [18]
     },
