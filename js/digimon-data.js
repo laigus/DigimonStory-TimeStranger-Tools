@@ -216,7 +216,7 @@ const digimonData = [
         name: "兹巴兽",
         level: "成长期",
         image: getDigimonImagePath("兹巴兽"),
-        evolvesTo: [169, 102, 125, 95, 174, 176], // 武人兽, 无赖兽, 坦克兽, 兹巴伊戈兽, 甲龙兽, 守卫机器人兽金
+        evolvesTo: [169, 102, 125, 95, 174, 176], // 武士兽, 无赖兽, 坦克兽, 兹巴伊戈兽, 甲龙兽, 守卫机器人兽金
         evolvesFrom: [11]
     },
     {
@@ -392,7 +392,7 @@ const digimonData = [
         name: "剑道兽",
         level: "成长期",
         image: getDigimonImagePath("剑道兽"),
-        evolvesTo: [169, 108, 127, 91], // 免儿爷兽, 武人兽, 左轮兽, 龙人兽, 核龙兽蓝
+        evolvesTo: [169, 108, 127, 91], // 免儿爷兽, 武士兽, 左轮兽, 龙人兽, 核龙兽蓝
         evolvesFrom: [9]
     },
     {
@@ -544,7 +544,7 @@ const digimonData = [
         name: "萨满兽",
         level: "成长期",
         image: getDigimonImagePath("萨满兽"),
-        evolvesTo: [168, 169, 163, 113], // 牛人兽, 武人兽, 风灾兽, 女巫兽
+        evolvesTo: [168, 169, 163, 113], // 牛人兽, 武士兽, 风灾兽, 女巫兽
         evolvesFrom: [12]
     },
     {
@@ -1365,9 +1365,9 @@ const digimonData = [
     },
     {
         id: 169,
-        name: "武人兽",
+        name: "武士兽",
         level: "成熟期",
-        image: getDigimonImagePath("武人兽"),
+        image: getDigimonImagePath("武士兽"),
         evolvesTo: [206, 218, 217], // 等级兽, 武天兽, 飞车龙兽
         evolvesFrom: [47, 66, 25]
     },
