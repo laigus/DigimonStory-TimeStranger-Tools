@@ -344,7 +344,7 @@ const digimonData = [
         name: "加奥兽",
         level: "成长期",
         image: getDigimonImagePath("加奥兽"),
-        evolvesTo: [93, 114, 109, 159], // 强袭龙兽, 加奥加兽, 狮子兽, 什么兽, 免儿爷兽
+        evolvesTo: [93, 114, 109, 159], // 强袭龙兽, 加奥加兽, 狮子兽, 什么兽, 兔儿爷兽
         evolvesFrom: [20]
     },
     {
@@ -392,7 +392,7 @@ const digimonData = [
         name: "剑道兽",
         level: "成长期",
         image: getDigimonImagePath("剑道兽"),
-        evolvesTo: [169, 108, 127, 91], // 免儿爷兽, 武士兽, 左轮兽, 龙人兽, 核龙兽蓝
+        evolvesTo: [129, 169, 108, 127, 91], // 兔儿爷兽, 武士兽, 左轮兽, 龙人兽, 核龙兽蓝
         evolvesFrom: [9]
     },
     {
@@ -464,7 +464,7 @@ const digimonData = [
         name: "拉拉兽",
         level: "成长期",
         image: getDigimonImagePath("拉拉兽"),
-        evolvesTo: [130, 108, 126, 120], // 仙人掌兽, 左轮兽, 泥人兽, 免儿爷兽, 向日葵兽
+        evolvesTo: [130, 108, 126, 120], // 仙人掌兽, 左轮兽, 泥人兽, 兔儿爷兽, 向日葵兽
         evolvesFrom: [10]
     },
     {
@@ -488,7 +488,7 @@ const digimonData = [
         name: "垂耳兔兽",
         level: "成长期",
         image: getDigimonImagePath("垂耳兔兽"),
-        evolvesTo: [89, 168, 109, 139, 126], // 灰熊兽, 牛人兽, 狮子兽, 免儿爷兽, 温迪兽, 泥人兽
+        evolvesTo: [89, 168, 109, 139, 126], // 灰熊兽, 牛人兽, 狮子兽, 兔儿爷兽, 温迪兽, 泥人兽
         evolvesFrom: [14]
     },
     {
