@@ -112,7 +112,7 @@ const digimonData = [
         name: "妖爪兽",
         level: "幼年期Ⅱ",
         image: getDigimonImagePath("妖爪兽"),
-        evolvesTo: [70, 66, 80, 468, 469], // 德库拉兽, 萨满兽, 哈哈兽, 亚古兽黑, 加布兽黑
+        evolvesTo: [70, 66, 80, 468, 469], // 德拉库兽, 萨满兽, 哈哈兽, 亚古兽黑, 加布兽黑
         evolvesFrom: [1]
     },
     {
@@ -573,9 +573,9 @@ const digimonData = [
     },
     {
         id: 70,
-        name: "德库拉兽",
+        name: "德拉库兽",
         level: "成长期",
-        image: getDigimonImagePath("德库拉兽"),
+        image: getDigimonImagePath("德拉库兽"),
         evolvesTo: [153, 154, 112, 124], // 血狼兽, 大便兽, 巫师兽, 星星兽
         evolvesFrom: [12]
     },
@@ -1072,7 +1072,7 @@ const digimonData = [
         name: "多路加兽",
         level: "成熟期",
         image: getDigimonImagePath("多路加兽"),
-        evolvesTo: [226, 207, 472], // 跃升暴龙兽, 多路龙兽, 至尊灰熊兽, 机械暴龙兽蓝
+        evolvesTo: [226, 247, 207, 472], // 跃升暴龙兽, 多路暴龙兽, 至尊灰熊兽, 机械暴龙兽蓝
         evolvesFrom: [50, 62, 469]
     },
     {

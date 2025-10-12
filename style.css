@@ -751,13 +751,17 @@ h1 {
 }
 
 .training-target {
-    flex: 0 0 100px;
+    flex: 0 0 160px;
+    min-height: 38px;
+    max-height: 120px;
     padding: 8px 12px;
     border: 1px solid #dee2e6;
     border-radius: 6px;
-    text-align: center;
     font-size: 14px;
-    transition: border-color 0.3s ease;
+    line-height: 1.4;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    resize: none;
+    overflow-y: auto;
 }
 
 .training-target:focus {

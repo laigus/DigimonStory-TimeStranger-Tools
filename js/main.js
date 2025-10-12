@@ -6,6 +6,12 @@ const evolutionChart = document.getElementById('evolutionChart');
 let selectedDigimon = null;
 let filteredDigimon = digimonData;
 
+function autoResizeTextarea(textarea) {
+    if (!textarea) return;
+    textarea.style.height = 'auto';
+    textarea.style.height = `${Math.min(textarea.scrollHeight, 120)}px`;
+}
+
 
 // 初始化应用
 function initializeApp() {
@@ -591,26 +597,26 @@ const TRAINING_STORAGE_KEY = 'digimon-training-items';
 
 const defaultTrainingTemplates = [
     { name: '三温暖A', stat: 'HP', personality: '心 →' },
-    //{ name: '三温暖B', stat: 'HP', personality: '心 →' },
-    //{ name: '三温暖C', stat: 'HP', personality: '' },
+    //{ name: '三温暖B', stat: 'HP大', personality: '心 →' },
+    //{ name: '三温暖C', stat: 'HP特大', personality: '' },
     { name: '手提音响A', stat: 'SP', personality: '头脑 ←' },
-    //{ name: '手提音响B', stat: 'SP', personality: '头脑 ←' },
-    //{ name: '手提音响C', stat: 'SP', personality: '' },
+    //{ name: '手提音响B', stat: 'SP大', personality: '头脑 ←' },
+    //{ name: '手提音响C', stat: 'SP特大', personality: '' },
     { name: '沙包A', stat: '攻击', personality: '心 爱 ↗' },
-    //{ name: '沙包B', stat: '攻击', personality: '心 爱 ↗' },
-    //{ name: '沙包C', stat: '攻击', personality: '' },
+    //{ name: '沙包B', stat: '攻击大', personality: '心 爱 ↗' },
+    { name: '沙包C', stat: '攻击特大', personality: '' },
     { name: '棍棒A', stat: '防御', personality: '心 友 ↘→' },
-    //{ name: '棍棒B', stat: '防御', personality: '心 友 ↘→' },
-    //{ name: '棍棒C', stat: '防御', personality: '心 友 ↘→' },
+    //{ name: '棍棒B', stat: '防御大', personality: '心 友 ↘→' },
+    { name: '棍棒C', stat: '防御特大', personality: '心 友 ↘→' },
     { name: '教室A', stat: '智力', personality: '头脑 友 ↙' },
-    // { name: '教室B', stat: '智力', personality: '头脑 友 ↙' },
-    //{ name: '教室C', stat: '智力', personality: '' },
+    // { name: '教室B', stat: '智力大', personality: '头脑 友 ↙' },
+    { name: '教室C', stat: '智力特大', personality: '' },
     { name: '茶室A', stat: '精神', personality: '头脑 爱 ↖' },
-    //{ name: '茶室B', stat: '精神', personality: '头脑 爱 ↖' },
-    //{ name: '茶室C', stat: '精神', personality: '' },
-    { name: '跑步机A', stat: '敏捷', personality: '心 友 ↘↓' }
-    //{ name: '跑步机B', stat: '敏捷', personality: '心 友 ↘↓' }
-    //{ name: '跑步机C', stat: '敏捷', personality: '' }
+    //{ name: '茶室B', stat: '精神大', personality: '头脑 爱 ↖' },
+    { name: '茶室C', stat: '精神特大', personality: '-' },
+    //{ name: '跑步机A', stat: '敏捷', personality: '心 友 ↘↓' },
+    { name: '跑步机B', stat: '敏捷大', personality: '心 友 ↘↓' },
+    { name: '跑步机C', stat: '敏捷特大', personality: '-' }
 ];
 
 const templateByStat = new Map(defaultTrainingTemplates.map(template => [template.stat, template]));
@@ -871,12 +877,16 @@ class TrainingManager {
             digimonDiv.textContent = item.digimonId ? '未找到对应的数码宝贝，请重新选择' : '点击添加左侧选中的数码宝贝';
         }
 
-        const targetInput = document.createElement('input');
-        targetInput.type = 'number';
+        const targetInput = document.createElement('textarea');
         targetInput.className = 'training-target';
-        targetInput.placeholder = '目标值';
+        targetInput.placeholder = '备注';
         targetInput.value = item.target ?? '';
-        targetInput.onchange = (e) => this.updateTarget(item.id, e.target.value);
+        targetInput.rows = 1;
+        targetInput.addEventListener('input', (e) => {
+            this.updateTarget(item.id, e.target.value);
+            autoResizeTextarea(e.target);
+        });
+        setTimeout(() => autoResizeTextarea(targetInput), 0);
 
         // 组装训练项
         div.appendChild(actionBtn);
