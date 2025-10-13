@@ -42,6 +42,7 @@
                     <button class="tab-button active" data-tab="evolution">进化</button>
                     <button class="tab-button" data-tab="training">训练</button>
                     <button class="tab-button" data-tab="personality">个性</button>
+                    <button class="tab-button" data-tab="notes">备注</button>
                 </div>
                 
                 <!-- 标签页内容 -->
@@ -68,6 +69,16 @@
                     <div class="tab-pane" id="personality-tab">
                         <div class="personality-container">
                             <div id="personalityChart" class="personality-chart-root"></div>
+                        </div>
+                    </div>
+
+                    <!-- 备注标签页 -->
+                    <div class="tab-pane" id="notes-tab">
+                        <div class="notes-container">
+                            <p class="notes-hint">内容保存至浏览器缓存中，清除缓存会导致备注内容丢失</p>
+                            <div class="notes-editor">
+                                <textarea id="notesTextarea" class="notes-textarea" data-max-height="400" placeholder="在这里记录你的想法、组合心得或其他备忘..."></textarea>
+                            </div>
                         </div>
                     </div>
                 </div>

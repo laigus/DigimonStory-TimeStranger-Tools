@@ -512,7 +512,7 @@ const digimonData = [
         name: "加支兽",
         level: "成长期",
         image: getDigimonImagePath("加支兽"),
-        evolvesTo: [153, 114, 133, 98, 132], // 血狼兽, 黑暗迪路兽, 加奥加兽, 刃王哈克兽, 杜宾犬兽, 多路加兽
+        evolvesTo: [153, 166, 114, 133, 98, 132], // 血狼兽, 黑暗迪路兽, 加奥加兽, 刃王哈克兽, 杜宾犬兽, 多路加兽
         evolvesFrom: [16]
     },
     {
@@ -568,7 +568,7 @@ const digimonData = [
         name: "吱吱兽",
         level: "成长期",
         image: getDigimonImagePath("吱吱兽"),
-        evolvesTo: [154, 97, 147, 148, 165], // 黑暗迪路兽, 大便兽, 迪路兽, 怪蛙兽, 卑劣兽, 白金大便兽
+        evolvesTo: [166, 154, 97, 147, 148, 165], // 黑暗迪路兽, 大便兽, 迪路兽, 怪蛙兽, 卑劣兽, 白金大便兽
         evolvesFrom: [19]
     },
     {
@@ -1341,9 +1341,9 @@ const digimonData = [
     },
     {
         id: 166,
-        name: "黑迪路兽",
+        name: "黑暗迪路兽",
         level: "成熟期",
-        image: getDigimonImagePath("黑迪路兽"),
+        image: getDigimonImagePath("黑暗迪路兽"),
         evolvesTo: [250, 297, 239, 473], // 熊猫兽, 女恶魔兽, 骷髅巨犀兽, 狼人加鲁鲁兽黑
         evolvesFrom: [69, 62, 469]
     },
@@ -2033,7 +2033,7 @@ const digimonData = [
         level: "完全体",
         image: getDigimonImagePath("大豆豆兽"),
         evolvesTo: [396, 360, 346], // 白金鼻涕兽, 王子豆豆兽, 大火车头兽
-        evolvesFrom: [135, 125]
+        evolvesFrom: [135, 170, 125]
     },
     {
         id: 253,
@@ -3640,7 +3640,7 @@ const digimonData = [
         name: "加布兽黑",
         level: "成长期",
         image: getDigimonImagePath("加布兽黑"),
-        evolvesTo: [168, 98, 132, 163, 470], // 牛人兽, 黑暗迪路兽, 杜宾犬兽, 多路加兽, 风灾兽, 加鲁鲁兽黑
+        evolvesTo: [168, 166, 98, 132, 163, 470], // 牛人兽, 黑暗迪路兽, 杜宾犬兽, 多路加兽, 风灾兽, 加鲁鲁兽黑
         evolvesFrom: [12]
     },
     {

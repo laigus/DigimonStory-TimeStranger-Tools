@@ -8,8 +8,23 @@ let filteredDigimon = digimonData;
 
 function autoResizeTextarea(textarea) {
     if (!textarea) return;
+    const maxHeight = parseInt(textarea.dataset.maxHeight || '400', 10);
     textarea.style.height = 'auto';
-    textarea.style.height = `${Math.min(textarea.scrollHeight, 120)}px`;
+    textarea.style.height = `${Math.min(textarea.scrollHeight, maxHeight)}px`;
+}
+
+function initializeNotesPane() {
+    const notesTextarea = document.getElementById('notesTextarea');
+    if (!notesTextarea) return;
+
+    const savedContent = localStorage.getItem(NOTES_STORAGE_KEY) || '';
+    notesTextarea.value = savedContent;
+    autoResizeTextarea(notesTextarea);
+
+    notesTextarea.addEventListener('input', (event) => {
+        localStorage.setItem(NOTES_STORAGE_KEY, event.target.value);
+        autoResizeTextarea(event.target);
+    });
 }
 
 
@@ -262,6 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     renderPersonalityChart();
+    initializeNotesPane();
 });
 
 // 工具函数：获取数码宝贝的完整进化链
@@ -594,23 +610,24 @@ class TabManager {
 const tabManager = new TabManager();
 
 const TRAINING_STORAGE_KEY = 'digimon-training-items';
+const NOTES_STORAGE_KEY = 'digimon-notes-content';
 
 const defaultTrainingTemplates = [
     { name: '三温暖A', stat: 'HP', personality: '心 →' },
     //{ name: '三温暖B', stat: 'HP大', personality: '心 →' },
-    //{ name: '三温暖C', stat: 'HP特大', personality: '' },
+    //{ name: '三温暖C', stat: 'HP特大', personality: '-' },
     { name: '手提音响A', stat: 'SP', personality: '头脑 ←' },
     //{ name: '手提音响B', stat: 'SP大', personality: '头脑 ←' },
-    //{ name: '手提音响C', stat: 'SP特大', personality: '' },
+    //{ name: '手提音响C', stat: 'SP特大', personality: '-' },
     { name: '沙包A', stat: '攻击', personality: '心 爱 ↗' },
     //{ name: '沙包B', stat: '攻击大', personality: '心 爱 ↗' },
-    { name: '沙包C', stat: '攻击特大', personality: '' },
+    { name: '沙包C', stat: '攻击特大', personality: '-' },
     { name: '棍棒A', stat: '防御', personality: '心 友 ↘→' },
     //{ name: '棍棒B', stat: '防御大', personality: '心 友 ↘→' },
-    { name: '棍棒C', stat: '防御特大', personality: '心 友 ↘→' },
+    { name: '棍棒C', stat: '防御特大', personality: '-' },
     { name: '教室A', stat: '智力', personality: '头脑 友 ↙' },
     // { name: '教室B', stat: '智力大', personality: '头脑 友 ↙' },
-    { name: '教室C', stat: '智力特大', personality: '' },
+    { name: '教室C', stat: '智力特大', personality: '-' },
     { name: '茶室A', stat: '精神', personality: '头脑 爱 ↖' },
     //{ name: '茶室B', stat: '精神大', personality: '头脑 爱 ↖' },
     { name: '茶室C', stat: '精神特大', personality: '-' },
@@ -770,11 +787,12 @@ class TrainingManager {
         this.trainingItems = [];
         this.nextId = 1;
         const { restored, migrated } = this.loadState();
+        const defaultsAdded = restored ? this.ensureDefaultTemplates() : false;
         if (!restored) {
             this.initializeDefaultItems();
         }
         this.render();
-        if (!restored || migrated) {
+        if (!restored || migrated || defaultsAdded) {
             this.saveState();
         }
     }
@@ -791,6 +809,30 @@ class TrainingManager {
                 isDefault: true
             });
         });
+    }
+
+    ensureDefaultTemplates() {
+        let added = false;
+        const existingDefaultNames = new Set(
+            this.trainingItems.filter(item => item.isDefault).map(item => item.name)
+        );
+
+        defaultTrainingTemplates.forEach(template => {
+            if (!existingDefaultNames.has(template.name)) {
+                this.trainingItems.push({
+                    id: this.nextId++,
+                    name: template.name,
+                    stat: template.stat,
+                    personality: template.personality,
+                    digimonId: null,
+                    target: '',
+                    isDefault: true
+                });
+                added = true;
+            }
+        });
+
+        return added;
     }
 
     render() {
@@ -882,6 +924,7 @@ class TrainingManager {
         targetInput.placeholder = '备注';
         targetInput.value = item.target ?? '';
         targetInput.rows = 1;
+        targetInput.dataset.maxHeight = '120';
         targetInput.addEventListener('input', (e) => {
             this.updateTarget(item.id, e.target.value);
             autoResizeTextarea(e.target);
