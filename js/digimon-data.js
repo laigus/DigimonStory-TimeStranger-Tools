@@ -176,7 +176,7 @@ const digimonData = [
         name: "汪喵兽",
         level: "幼年期Ⅱ",
         image: getDigimonImagePath("汪喵兽"),
-        evolvesTo: [41, 35, 58], // 加奥兽, 梦  兽, 小熊兽, 狐狸兽
+        evolvesTo: [41, 30, 35, 58], // 加奥兽, 梦貘兽, 小熊兽, 狐狸兽
         evolvesFrom: [3]
     },
     {
@@ -253,10 +253,10 @@ const digimonData = [
     },
     {
         id: 30,
-        name: "梦 兽",
+        name: "梦貘兽",
         level: "成长期",
-        image: getDigimonImagePath("梦 兽"),
-        evolvesTo: [135, 87, 161, 106], // 燃烧兽, 加鲁鲁兽, 鬼怪兽, 独角马兽, 九尾兽
+        image: getDigimonImagePath("梦貘兽"),
+        evolvesTo: [135, 87, 161, 106, 117], // 燃烧兽, 加鲁鲁兽, 鬼怪兽, 独角马兽, 九尾狐兽
         evolvesFrom: [20]
     },
     {
@@ -344,7 +344,7 @@ const digimonData = [
         name: "加奥兽",
         level: "成长期",
         image: getDigimonImagePath("加奥兽"),
-        evolvesTo: [93, 114, 109, 159], // 强袭龙兽, 加奥加兽, 狮子兽, 什么兽, 兔儿爷兽
+        evolvesTo: [93, 114, 109, 159, 129], // 强袭龙兽, 加奥加兽, 狮子兽, 什么兽, 兔儿爷兽
         evolvesFrom: [20]
     },
     {
@@ -360,7 +360,7 @@ const digimonData = [
         name: "加布兽",
         level: "成长期",
         image: getDigimonImagePath("加布兽"),
-        evolvesTo: [87, 82, 131, 148], // 加鲁鲁兽, 海狮兽, 钻头鼹鼠兽, 九尾兽, 卑劣兽, 加布兽友情纽带
+        evolvesTo: [87, 82, 131, 117, 148], // 加鲁鲁兽, 海狮兽, 钻头鼹鼠兽, 九尾狐兽, 卑劣兽, 加布兽友情纽带
         evolvesFrom: [11]
     },
     {
@@ -480,7 +480,7 @@ const digimonData = [
         name: "狐狸兽",
         level: "成长期",
         image: getDigimonImagePath("狐狸兽"),
-        evolvesTo: [137, 120, 117, 470], // 雷克斯兽, 向日葵兽, 破裂兽, 九尾狐兽, 加鲁鲁兽黑
+        evolvesTo: [137, 120, 110, 117, 470], // 雷克斯兽, 向日葵兽, 裂破兽, 九尾狐兽, 加鲁鲁兽黑
         evolvesFrom: [20]
     },
     {
@@ -713,7 +713,7 @@ const digimonData = [
         level: "成熟期",
         image: getDigimonImagePath("加鲁鲁兽"),
         evolvesTo: [229, 288, 242, 235], // 狼人加鲁鲁兽, 蓝色燃烧兽, 道士兽, 奇美拉兽
-        evolvesFrom: [57, 43]
+        evolvesFrom: [57, 43, 30]
     },
     {
         id: 88,

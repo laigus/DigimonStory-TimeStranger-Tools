@@ -636,6 +636,8 @@ const defaultTrainingTemplates = [
     { name: '跑步机C', stat: '敏捷特大', personality: '-' }
 ];
 
+const templateOrderByName = new Map(defaultTrainingTemplates.map((template, index) => [template.name, index]));
+
 const templateByStat = new Map(defaultTrainingTemplates.map(template => [template.stat, template]));
 const wisdomTemplate = defaultTrainingTemplates.find(template => template.stat === '智力');
 if (wisdomTemplate) {
@@ -791,6 +793,7 @@ class TrainingManager {
         if (!restored) {
             this.initializeDefaultItems();
         }
+        this.sortTrainingItems();
         this.render();
         if (!restored || migrated || defaultsAdded) {
             this.saveState();
@@ -833,6 +836,16 @@ class TrainingManager {
         });
 
         return added;
+    }
+
+    sortTrainingItems() {
+        this.trainingItems.sort((a, b) => {
+            const orderA = templateOrderByName.has(a.name) ? templateOrderByName.get(a.name) : Number.MAX_SAFE_INTEGER;
+            const orderB = templateOrderByName.has(b.name) ? templateOrderByName.get(b.name) : Number.MAX_SAFE_INTEGER;
+            if (orderA !== orderB) return orderA - orderB;
+            if (a.isDefault !== b.isDefault) return a.isDefault ? -1 : 1;
+            return a.id - b.id;
+        });
     }
 
     render() {
@@ -958,12 +971,14 @@ class TrainingManager {
         const parentIndex = this.trainingItems.findIndex(item => item.id === parentId);
         this.trainingItems.splice(parentIndex + 1, 0, newItem);
 
+        this.sortTrainingItems();
         this.render();
         this.saveState();
     }
 
     removeItem(itemId) {
         this.trainingItems = this.trainingItems.filter(item => item.id !== itemId);
+        this.sortTrainingItems();
         this.render();
         this.saveState();
     }
