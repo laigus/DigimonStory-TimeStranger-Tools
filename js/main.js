@@ -614,7 +614,7 @@ const NOTES_STORAGE_KEY = 'digimon-notes-content';
 
 const defaultTrainingTemplates = [
     { name: '三温暖A', stat: 'HP', personality: '心 →' },
-    //{ name: '三温暖B', stat: 'HP大', personality: '心 →' },
+    { name: '三温暖B', stat: 'HP大', personality: '心 →' },
     //{ name: '三温暖C', stat: 'HP特大', personality: '-' },
     { name: '手提音响A', stat: 'SP', personality: '头脑 ←' },
     //{ name: '手提音响B', stat: 'SP大', personality: '头脑 ←' },
@@ -631,7 +631,7 @@ const defaultTrainingTemplates = [
     { name: '茶室A', stat: '精神', personality: '头脑 爱 ↖' },
     //{ name: '茶室B', stat: '精神大', personality: '头脑 爱 ↖' },
     { name: '茶室C', stat: '精神特大', personality: '-' },
-    //{ name: '跑步机A', stat: '敏捷', personality: '心 友 ↘↓' },
+    { name: '跑步机A', stat: '敏捷', personality: '心 友 ↘↓' },
     { name: '跑步机B', stat: '敏捷大', personality: '心 友 ↘↓' },
     { name: '跑步机C', stat: '敏捷特大', personality: '-' }
 ];

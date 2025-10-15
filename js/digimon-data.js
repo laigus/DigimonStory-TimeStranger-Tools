@@ -440,7 +440,7 @@ const digimonData = [
         name: "巴鲁兽",
         level: "成长期",
         image: getDigimonImagePath("巴鲁兽"),
-        evolvesTo: [104, 167, 130, 178, 165], // 毛人兽, 野菜兽, 仙人掌兽, 虫蛹兽, 白金大便兽
+        evolvesTo: [104, 167, 130, 140, 178, 165], // 毛人兽, 野菜兽, 仙人掌兽, 虫蛹兽, 白金大便兽
         evolvesFrom: [10]
     },
     {
@@ -913,7 +913,7 @@ const digimonData = [
         level: "成熟期",
         image: getDigimonImagePath("巫师兽"),
         evolvesTo: [285, 292, 298], // 分子兽, 神秘兽, 贤者兽
-        evolvesFrom: [60, 32]
+        evolvesFrom: [60, 32, 70]
     },
     {
         id: 113,
