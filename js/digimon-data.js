@@ -697,7 +697,7 @@ const digimonData = [
         level: "成熟期",
         image: getDigimonImagePath("比多兽"),
         evolvesTo: [262, 198, 273, 235], // 丁香兽, 超比多兽, 炮蜂兽, 奇美拉兽
-        evolvesFrom: [28]
+        evolvesFrom: [73, 28]
     },
     {
         id: 86,
@@ -792,7 +792,7 @@ const digimonData = [
         name: "迪路兽",
         level: "成熟期",
         image: getDigimonImagePath("迪路兽"),
-        evolvesTo: [182, 203, 301], // 纳芙蒂兽, 天女兽, 西尔芙兽
+        evolvesTo: [301, 182, 203], // 西尔芙兽, 纳芙蒂兽, 天女兽 
         evolvesFrom: [69, 34, 68, 52]
     },
     {
@@ -984,7 +984,7 @@ const digimonData = [
         name: "海龙兽",
         level: "成熟期",
         image: getDigimonImagePath("海龙兽"),
-        evolvesTo: [220, 260, 299, 217, 275], // 巨鲸兽, 百万海龙兽, 恶海龙兽, 飞车龙兽, 鲨鱼兽, 丧尸梅龙兽
+        evolvesTo: [220, 260, 299, 217, 275, 280], // 巨鲸兽, 百万海龙兽, 恶海龙兽, 飞车龙兽, 鲨鱼兽, 丧尸海龙兽
         evolvesFrom: [49, 74, 40, 61]
     },
     {
@@ -1416,7 +1416,7 @@ const digimonData = [
         name: "XV兽",
         level: "成熟期",
         image: getDigimonImagePath("XV兽"),
-        evolvesTo: [302, 226, 303], // 恐蜂兽, 跃升暴龙兽, 机甲龙兽
+        evolvesTo: [302, 303, 226], // 恐蜂兽, 机甲龙兽, 跃升暴龙兽
         evolvesFrom: [64, 50, 77]
     },
     {
@@ -1953,7 +1953,7 @@ const digimonData = [
         level: "完全体",
         image: getDigimonImagePath("道士兽"),
         evolvesTo: [311, 351, 345], // 维纳斯兽, 咲耶兽, 葛叶兽
-        evolvesFrom: [87, 140]
+        evolvesFrom: [87, 140, 117]
     },
     {
         id: 243,
@@ -2169,7 +2169,7 @@ const digimonData = [
         level: "完全体",
         image: getDigimonImagePath("大古加兽"),
         evolvesTo: [386, 334, 420], // 暴君比多兽, 力神比多兽, 巨大古加兽
-        evolvesFrom: [177, 146, 164]
+        evolvesFrom: [177, 146, 164, 94]
     },
     {
         id: 270,
