@@ -1665,7 +1665,7 @@ const digimonData = [
         level: "完全体",
         image: getDigimonImagePath("等级兽"),
         evolvesTo: [308, 330, 355], // 阿尔法兽, 杜兰达兽, 君主兽
-        evolvesFrom: [107, 152, 127, 95]
+        evolvesFrom: [107, 169, 152, 127, 95]
     },
     {
         id: 207,
