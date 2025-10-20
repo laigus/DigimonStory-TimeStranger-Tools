@@ -1680,7 +1680,7 @@ const digimonData = [
         name: "刻耳柏洛兽",
         level: "完全体",
         image: getDigimonImagePath("刻耳柏洛兽"),
-        evolvesTo: [397, 209, 350, 475], // 普路托兽, 刻耳柏洛兽JM, 剑狮兽, 钢铁加鲁鲁兽黑
+        evolvesTo: [209, 397, 350, 475], // 刻耳柏洛兽JM, 普路托兽, 剑狮兽, 钢铁加鲁鲁兽黑
         evolvesFrom: [98, 136, 58]
     },
     {
@@ -1688,7 +1688,7 @@ const digimonData = [
         name: "刻耳柏洛兽JM",
         level: "完全体",
         image: getDigimonImagePath("刻耳柏洛兽JM"),
-        evolvesTo: [397, 208, 350, 475], // 普路托兽, 刻耳柏洛兽, 剑狮兽, 钢铁加鲁鲁兽黑
+        evolvesTo: [208, 397, 350, 475], // 刻耳柏洛兽, 普路托兽, 剑狮兽, 钢铁加鲁鲁兽黑
         evolvesFrom: [208]
     },
     {
