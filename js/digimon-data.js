@@ -808,7 +808,7 @@ const digimonData = [
         name: "巴多拉兽",
         level: "成熟期",
         image: getDigimonImagePath("巴多拉兽"),
-        evolvesTo: [219, 204, 244, 215], // 耀狮兽, 迦楼达兽, 死亡燃烧兽, 鹦鹉兽
+        evolvesTo: [219, 204, 244, 215], // 耀狮兽, 伽楼达兽, 死亡燃烧兽, 鹦鹉兽
         evolvesFrom: [24, 32, 31, 55]
     },
     {
@@ -832,7 +832,7 @@ const digimonData = [
         name: "无赖兽",
         level: "成熟期",
         image: getDigimonImagePath("无赖兽"),
-        evolvesTo: [218, 214, 204], // 武天兽, 杜兰兽, 迦楼达兽
+        evolvesTo: [218, 214, 204], // 武天兽, 杜兰兽, 伽楼达兽
         evolvesFrom: [31, 36, 25]
     },
     {
@@ -1320,7 +1320,7 @@ const digimonData = [
         name: "风灾兽",
         level: "成熟期",
         image: getDigimonImagePath("风灾兽"),
-        evolvesTo: [256, 204], // 火山兽, 骷髅撤旦兽, 迦楼达兽
+        evolvesTo: [256, 204], // 火山兽, 骷髅撤旦兽, 伽楼达兽
         evolvesFrom: [66, 55, 469]
     },
     {
@@ -1400,7 +1400,7 @@ const digimonData = [
         name: "天鹰兽",
         level: "成熟期",
         image: getDigimonImagePath("天鹰兽"),
-        evolvesTo: [204, 215, 301, 225], // 迦楼达兽, 鹦鹉兽, 西尔芙兽, 八咫乌兽
+        evolvesTo: [204, 215, 301, 225], // 伽楼达兽, 鹦鹉兽, 西尔芙兽, 八咫乌兽
         evolvesFrom: [32, 36, 78]
     },
     {
@@ -1645,9 +1645,9 @@ const digimonData = [
     },
     {
         id: 204,
-        name: "迦楼达兽",
+        name: "伽楼达兽",
         level: "完全体",
-        image: getDigimonImagePath("迦楼达兽"),
+        image: getDigimonImagePath("伽楼达兽"),
         evolvesTo: [347, 335, 352], // 狮鹫兽, 凤凰兽, 杰斯兽
         evolvesFrom: [173, 99, 102, 163]
     },
@@ -1753,7 +1753,7 @@ const digimonData = [
         level: "完全体",
         image: getDigimonImagePath("飞车龙兽"),
         evolvesTo: [313, 373], // 王龙兽, 凯王兽
-        evolvesFrom: [83, 88, 121]
+        evolvesFrom: [83, 88, 169, 121]
     },
     {
         id: 218,
