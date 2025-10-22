@@ -1865,7 +1865,7 @@ const digimonData = [
         level: "完全体",
         image: getDigimonImagePath("暗马兽"),
         evolvesTo: [326, 324, 428], // 斯雷普兽, 骷髅猛犸兽, 颅骨兽+暗马兽
-        evolvesFrom: [161, 138]
+        evolvesFrom: [161, 117, 138]
     },
     {
         id: 232,
