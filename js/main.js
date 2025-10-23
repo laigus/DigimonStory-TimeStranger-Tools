@@ -42,7 +42,7 @@ function initializeApp() {
     // ===== 字体选择逻辑 =====
     const fontSelector = document.getElementById('fontSelector');
     if (fontSelector) {
-        const allowedFonts = new Set(['default','kuai','xiaowei','mashan','yuanyuan','fangfang']);
+        const allowedFonts = new Set(['default','kuai','xiaowei','mashan','longcang','lubrifont','yuanyuan','fangfang']);
         let savedFont = localStorage.getItem('digimon-font-choice') || 'default';
         if (!allowedFonts.has(savedFont)) savedFont = 'default';
         fontSelector.value = savedFont;

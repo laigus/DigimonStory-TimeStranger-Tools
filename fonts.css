@@ -1,23 +1,39 @@
 /* 本地字体引入说明：
- * 已去除文楷与黄油体，新增项目本地字体：圆圆 / 方方。
- * 仍保留可选：站酷快乐体 / 站酷小微 / 马善政手写体（若在线加载或放入本地可对应添加）。
+ * 本地字体：站酷快乐体、站酷小微、马善政手写体、龙藏体、WDXL润滑字体、圆圆、方方
  */
 
+/* 站酷快乐体 */
 @font-face {
     font-family: 'ZCOOL KuaiLe Local';
-    src: url('fonts/ZCOOLKuaiLe-Regular.woff2') format('woff2');
+    src: url('fonts/ZCOOL_KuaiLe/ZCOOLKuaiLe-Regular.ttf') format('truetype');
     font-display: swap;
 }
 
+/* 站酷小微体 */
 @font-face {
     font-family: 'ZCOOL XiaoWei Local';
-    src: url('fonts/ZCOOLXiaoWei-Regular.woff2') format('woff2');
+    src: url('fonts/ZCOOL_XiaoWei/ZCOOLXiaoWei-Regular.ttf') format('truetype');
     font-display: swap;
 }
 
+/* 马善政手写体 */
 @font-face {
     font-family: 'Ma Shan Zheng Local';
-    src: url('fonts/MaShanZheng-Regular.woff2') format('woff2');
+    src: url('fonts/Ma_Shan_Zheng/MaShanZheng-Regular.ttf') format('truetype');
+    font-display: swap;
+}
+
+/* 龙藏体 */
+@font-face {
+    font-family: 'Long Cang Local';
+    src: url('fonts/Long_Cang/LongCang-Regular.ttf') format('truetype');
+    font-display: swap;
+}
+
+/* WDXL润滑字体 */
+@font-face {
+    font-family: 'WDXL Lubrifont SC Local';
+    src: url('fonts/WDXL_Lubrifont_SC/WDXLLubrifontSC-Regular.ttf') format('truetype');
     font-display: swap;
 }
 
@@ -29,17 +45,35 @@
 }
 @font-face {
     font-family: 'FangFang';
-    src: url('fonts/方方.ttf') format('truetype');
+    src: url('fonts/方方.woff2') format('woff2');
     font-display: swap;
 }
 
 /* 通过 data-font 属性控制 body 字体 */
-body[data-font="kuai"] { font-family: 'ZCOOL KuaiLe Local', 'ZCOOL KuaiLe', 'Microsoft YaHei', sans-serif; }
-body[data-font="xiaowei"] { font-family: 'ZCOOL XiaoWei Local', 'ZCOOL XiaoWei', 'Microsoft YaHei', sans-serif; }
-body[data-font="mashan"] { font-family: 'Ma Shan Zheng Local', 'Ma Shan Zheng', 'Microsoft YaHei', cursive, sans-serif; }
-body[data-font="yuanyuan"] { font-family: 'YuanYuan', 'Microsoft YaHei', sans-serif; }
-body[data-font="fangfang"] { font-family: 'FangFang', 'Microsoft YaHei', sans-serif; }
-body[data-font="default"] { font-family: 'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB', Arial, sans-serif; }
+body[data-font="kuai"] { 
+    font-family: 'ZCOOL KuaiLe Local', 'ZCOOL KuaiLe', 'Microsoft YaHei', sans-serif; 
+}
+body[data-font="xiaowei"] { 
+    font-family: 'ZCOOL XiaoWei Local', 'ZCOOL XiaoWei', 'Microsoft YaHei', sans-serif; 
+}
+body[data-font="mashan"] { 
+    font-family: 'Ma Shan Zheng Local', 'Ma Shan Zheng', 'Microsoft YaHei', cursive, sans-serif; 
+}
+body[data-font="longcang"] { 
+    font-family: 'Long Cang Local', 'Long Cang', 'Microsoft YaHei', cursive, sans-serif; 
+}
+body[data-font="lubrifont"] { 
+    font-family: 'WDXL Lubrifont SC Local', 'WDXL Lubrifont SC', 'Microsoft YaHei', sans-serif; 
+}
+body[data-font="yuanyuan"] { 
+    font-family: 'YuanYuan', 'Microsoft YaHei', sans-serif; 
+}
+body[data-font="fangfang"] { 
+    font-family: 'FangFang', 'Microsoft YaHei', sans-serif; 
+}
+body[data-font="default"] { 
+    font-family: 'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB', Arial, sans-serif; 
+}
 
 /* 字体选择器轻度样式，放在顶栏右侧 */
 .font-selector-wrapper {
@@ -70,4 +104,7 @@ body[data-font="default"] { font-family: 'Microsoft YaHei', 'PingFang SC', 'Hira
     font-size: 12px;
     cursor: pointer;
 }
-#fontSelector:focus { outline: none; box-shadow: 0 0 0 2px rgba(255,255,255,0.4); }
+#fontSelector:focus { 
+    outline: none; 
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.4); 
+}
