@@ -488,7 +488,7 @@ const digimonData = [
         name: "垂耳兔兽",
         level: "成长期",
         image: getDigimonImagePath("垂耳兔兽"),
-        evolvesTo: [89, 168, 109, 139, 126], // 灰熊兽, 牛人兽, 狮子兽, 兔儿爷兽, 温迪兽, 泥人兽
+        evolvesTo: [89, 168, 109, 129, 139, 126], // 灰熊兽, 牛人兽, 狮子兽, 兔儿爷兽, 温迪兽, 泥人兽
         evolvesFrom: [14]
     },
     {
