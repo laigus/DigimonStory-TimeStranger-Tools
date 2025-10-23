@@ -1,25 +1,27 @@
-// 标签页管理器模块
-
+// 标签页功能
 class TabManager {
     constructor() {
-        this.activeTab = 'evolution';
-        this.lastTab = 'evolution';
+        this.tabButtons = Array.from(document.querySelectorAll('.tab-button'));
+        this.tabOrder = this.tabButtons.map(button => button.dataset.tab);
+        this.activeTab = this.tabOrder[0] || null;
+        this.lastTab = this.activeTab;
         this.init();
     }
 
     init() {
-        const tabButtons = document.querySelectorAll('.tab-button');
-        tabButtons.forEach(button => {
+        this.tabButtons.forEach(button => {
             button.addEventListener('click', (e) => {
-                const tabId = e.target.dataset.tab;
+                const tabId = e.currentTarget.dataset.tab;
                 this.switchTab(tabId);
             });
         });
     }
 
     switchTab(tabId) {
-        if (tabId === this.activeTab) return;
-        const direction = tabId === 'training' ? 'right' : 'left';
+        if (!this.tabOrder.includes(tabId) || tabId === this.activeTab) return;
+        const currentIndex = this.tabOrder.indexOf(this.activeTab);
+        const nextIndex = this.tabOrder.indexOf(tabId);
+        const direction = nextIndex > currentIndex ? 'right' : 'left';
 
         // 更新按钮状态
         document.querySelectorAll('.tab-button').forEach(button => {

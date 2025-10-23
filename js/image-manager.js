@@ -1,4 +1,4 @@
-// 图片管理器模块
+// ===== 图片管理功能 =====
 
 class ImageManager {
     constructor() {
@@ -155,6 +155,8 @@ class ImageManager {
         this.resetPreview();
         this.updateButtons();
         
+        //alert(`图片已下载！\n文件名：${this.currentSelectedDigimon.name}\n请将下载的文件放到 picture 文件夹中，然后刷新页面。`);
+        
         // 保存后自动关闭弹窗
         this.closeModalHandler();
     }
@@ -177,7 +179,9 @@ class ImageManager {
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
+
     }
+
 }
 
 // 打开图片编辑器的全局函数
