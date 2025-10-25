@@ -1264,7 +1264,7 @@ const digimonData = [
         name: "恶魔兽",
         level: "成熟期",
         image: getDigimonImagePath("恶魔兽"),
-        evolvesTo: [267, 297, 304, 265], // 吸血魔兽, 女恶魔兽, 地狱使者兽, 骷髅撤旦兽, 阿斯塔兽
+        evolvesTo: [267, 297, 304, 279, 265], // 吸血魔兽, 女恶魔兽, 地狱使者兽,骷髅撒旦兽, 阿斯塔兽
         evolvesFrom: [60, 72, 74, 468]
     },
     {
@@ -1320,7 +1320,7 @@ const digimonData = [
         name: "风灾兽",
         level: "成熟期",
         image: getDigimonImagePath("风灾兽"),
-        evolvesTo: [256, 204], // 火山兽, 骷髅撤旦兽, 伽楼达兽
+        evolvesTo: [256, 279, 204], // 火山兽, 骷髅撒旦兽, 伽楼达兽
         evolvesFrom: [66, 55, 469]
     },
     {
@@ -1896,7 +1896,7 @@ const digimonData = [
         name: "奇美拉兽",
         level: "完全体",
         image: getDigimonImagePath("奇美拉兽"),
-        evolvesTo: [379, 405, 406], // 大德库拉兽, 千年兽, 无限龙兽
+        evolvesTo: [379, 405, 406], // 大德拉库兽, 千年兽, 无限龙兽
         evolvesFrom: [87, 157, 85, 90, 146]
     },
     {
@@ -2336,7 +2336,7 @@ const digimonData = [
         name: "斗牛士兽",
         level: "完全体",
         image: getDigimonImagePath("斗牛士兽"),
-        evolvesTo: [379, 325, 345], // 大德库拉兽, 斩天使兽, 葛叶兽
+        evolvesTo: [379, 325, 345], // 大德拉库兽, 斩天使兽, 葛叶兽
         evolvesFrom: [153, 129, 98]
     },
     {
@@ -2745,7 +2745,7 @@ const digimonData = [
         level: "究极体",
         image: getDigimonImagePath("渡鸦兽"),
         evolvesTo: [438], // 渡鸦兽BM
-        evolvesFrom: [286, 225]
+        evolvesFrom: [286, 225, 281]
     },
     {
         id: 342,
@@ -2753,7 +2753,7 @@ const digimonData = [
         level: "究极体",
         image: getDigimonImagePath("究极腕龙兽"),
         evolvesTo: [],
-        evolvesFrom: [295, 255]
+        evolvesFrom: [246, 295, 255]
     },
     {
         id: 343,
@@ -3045,9 +3045,9 @@ const digimonData = [
     },
     {
         id: 379,
-        name: "大德库拉兽",
+        name: "大德拉库兽",
         level: "究极体",
-        image: getDigimonImagePath("大德库拉兽"),
+        image: getDigimonImagePath("大德拉库兽"),
         evolvesTo: [],
         evolvesFrom: [290, 235]
     },
@@ -3149,9 +3149,9 @@ const digimonData = [
     },
     {
         id: 392,
-        name: "小丑兽",
+        name: "小丑皇",
         level: "究极体",
-        image: getDigimonImagePath("小丑兽"),
+        image: getDigimonImagePath("小丑皇"),
         evolvesTo: [450], // 启示录兽
         evolvesFrom: [279, 286]
     },
@@ -3352,7 +3352,7 @@ const digimonData = [
         name: "帝皇龙甲兽FM",
         level: "究极体",
         image: getDigimonImagePath("帝皇龙甲兽FM"),
-        evolvesTo: [429], // 帝皇龙甲兽PM
+        evolvesTo: [416, 429], // 帝皇龙甲兽DM, 帝皇龙甲兽PM
         evolvesFrom: [416]
     },
     {
