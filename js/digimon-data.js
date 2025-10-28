@@ -1640,7 +1640,7 @@ const digimonData = [
         name: "天女兽",
         level: "完全体",
         image: getDigimonImagePath("天女兽"),
-        evolvesTo: [410, 314, 336, 337], // 朱诺兽, 座天使兽, 圣龙兽, 莫斯提兽
+        evolvesTo: [337, 410, 336, 314], // 莫斯提兽, 朱诺兽, 圣龙兽, 座天使兽
         evolvesFrom: [110, 97, 105, 113]
     },
     {
@@ -1896,7 +1896,7 @@ const digimonData = [
         name: "奇美拉兽",
         level: "完全体",
         image: getDigimonImagePath("奇美拉兽"),
-        evolvesTo: [379, 405, 406], // 大德拉库兽, 千年兽, 无限龙兽
+        evolvesTo: [405, 379,  406], // 千年兽, 大德拉库兽, 无限龙兽
         evolvesFrom: [87, 157, 85, 90, 146]
     },
     {
@@ -3304,7 +3304,7 @@ const digimonData = [
         name: "朱诺兽HM",
         level: "究极体",
         image: getDigimonImagePath("朱诺兽HM"),
-        evolvesTo: [],
+        evolvesTo: [410],
         evolvesFrom: [410]
     },
     {
