@@ -688,7 +688,7 @@ const digimonData = [
         name: "天使兽",
         level: "成熟期",
         image: getDigimonImagePath("天使兽"),
-        evolvesTo: [254, 221, 241, 300], // 骏鹰兽, 神圣天使兽, 塞壬兽, 土偶兽
+        evolvesTo: [300, 254, 221, 241], // 土偶兽, 骏鹰兽, 神圣天使兽, 塞壬兽
         evolvesFrom: [22, 51]
     },
     {
@@ -1864,7 +1864,7 @@ const digimonData = [
         name: "暗马兽",
         level: "完全体",
         image: getDigimonImagePath("暗马兽"),
-        evolvesTo: [326, 324, 428], // 斯雷普兽, 骷髅猛犸兽, 颅骨兽+暗马兽
+        evolvesTo: [428, 326, 324], // 颅骨兽+暗马兽, 斯雷普兽, 骷髅猛犸兽
         evolvesFrom: [161, 117, 138]
     },
     {
