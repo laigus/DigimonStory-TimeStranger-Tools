@@ -1815,3 +1815,235 @@ h1 {
         text-align: center;
     }
 }
+
+/* ============================================
+   玻璃材质主题样式
+   ============================================ */
+
+body[data-theme="glass"] {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* 玻璃效果：左侧数码宝贝列表 */
+body[data-theme="glass"] .digimon-list {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 0px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+/* 玻璃效果：右侧进化图 */
+body[data-theme="glass"] .evolution-chart {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 0px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+/* 玻璃效果：搜索框 */
+body[data-theme="glass"] #searchInput {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #fff;
+}
+
+body[data-theme="glass"] #searchInput::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* 玻璃效果：数码宝贝列表项 */
+body[data-theme="glass"] .digimon-item {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+body[data-theme="glass"] .digimon-item:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+body[data-theme="glass"] .digimon-item.selected {
+    background: rgba(58, 123, 213, 0.35);
+    border-color: rgba(58, 123, 213, 0.6);
+}
+
+body[data-theme="glass"] .digimon-name {
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+body[data-theme="glass"] .digimon-level {
+    color: rgba(255, 255, 255, 0.85);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* 玻璃效果：标签页导航 */
+body[data-theme="glass"] .tab-navigation {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+body[data-theme="glass"] .tab-button {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.8);
+    border-bottom: 2px solid transparent;
+}
+
+body[data-theme="glass"] .tab-button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+}
+
+body[data-theme="glass"] .tab-button.active {
+    background: rgba(255, 255, 255, 0.25);
+    color: #fff;
+    border-bottom-color: rgba(255, 255, 255, 0.8);
+}
+
+/* 玻璃效果：标签页内容 */
+body[data-theme="glass"] .tab-pane {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* 玻璃效果：进化树卡片 */
+body[data-theme="glass"] .evolution-tree {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+/* 玻璃效果：数码宝贝卡片（进化页面） */
+body[data-theme="glass"] .digimon-card {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25);
+}
+
+body[data-theme="glass"] .digimon-card:hover {
+    background: rgba(255, 255, 255, 0.35);
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.35);
+}
+
+body[data-theme="glass"] .digimon-card .digimon-name {
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+body[data-theme="glass"] .digimon-card .digimon-level {
+    color: rgba(255, 255, 255, 0.85);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+body[data-theme="glass"] .digimon-card .digimon-image {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+body[data-theme="glass"] .digimon-card .empty-placeholder {
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+body[data-theme="glass"] .column-title {
+    color: #fff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+body[data-theme="glass"] .evolution-arrow {
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+body[data-theme="glass"] .no-evolution {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+body[data-theme="glass"] .evolution-node {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+body[data-theme="glass"] .evolution-node .digimon-name {
+    color: #fff;
+}
+
+body[data-theme="glass"] .evolution-node .digimon-level {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* 玻璃效果：训练项 */
+body[data-theme="glass"] .training-item {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+body[data-theme="glass"] .training-digimon {
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+body[data-theme="glass"] .training-digimon.empty {
+    background: rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* 玻璃效果：按钮 */
+body[data-theme="glass"] .delete-btn {
+    background: rgba(220, 53, 69, 0.7);
+    backdrop-filter: blur(5px);
+}
+
+body[data-theme="glass"] .delete-btn:hover {
+    background: rgba(220, 53, 69, 0.85);
+}
+
+/* 玻璃效果：路线规划器 */
+body[data-theme="glass"] .route-selector-card {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+body[data-theme="glass"] .route-results {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+body[data-theme="glass"] .route-step-card {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+body[data-theme="glass"] .route-summary,
+body[data-theme="glass"] .route-hint {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* 玻璃效果：笔记区域 */
+body[data-theme="glass"] #notesTextarea {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+}
+
+body[data-theme="glass"] #notesTextarea::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+body[data-theme="glass"] .notes-hint {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}

@@ -55,6 +55,22 @@ function initializeApp() {
         });
     }
 
+    // ===== 主题选择逻辑 =====
+    const themeSelector = document.getElementById('themeSelector');
+    if (themeSelector) {
+        const allowedThemes = new Set(['default', 'glass']);
+        let savedTheme = localStorage.getItem('digimon-theme-choice') || 'default';
+        if (!allowedThemes.has(savedTheme)) savedTheme = 'default';
+        themeSelector.value = savedTheme;
+        document.body.setAttribute('data-theme', savedTheme);
+
+        themeSelector.addEventListener('change', () => {
+            const val = themeSelector.value;
+            document.body.setAttribute('data-theme', allowedThemes.has(val) ? val : 'default');
+            localStorage.setItem('digimon-theme-choice', val);
+        });
+    }
+
 }
 
 // 设置搜索框监听器

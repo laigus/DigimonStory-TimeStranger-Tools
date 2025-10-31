@@ -75,11 +75,19 @@ body[data-font="default"] {
     font-family: 'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB', Arial, sans-serif; 
 }
 
-/* 字体选择器轻度样式，放在顶栏右侧 */
-.font-selector-wrapper {
+/* 设置选择器容器 */
+.settings-wrapper {
     position: absolute;
     top: 18px;
     right: 30px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* 字体选择器样式 */
+.font-selector-wrapper,
+.theme-selector-wrapper {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -90,13 +98,15 @@ body[data-font="default"] {
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-.font-selector-wrapper label {
+.font-selector-wrapper label,
+.theme-selector-wrapper label {
     font-size: 12px;
     color: #fff;
     letter-spacing: 1px;
 }
 
-#fontSelector {
+#fontSelector,
+#themeSelector {
     border: 1px solid #fff;
     background: rgba(255,255,255,0.85);
     border-radius: 6px;
@@ -104,7 +114,8 @@ body[data-font="default"] {
     font-size: 12px;
     cursor: pointer;
 }
-#fontSelector:focus { 
+#fontSelector:focus,
+#themeSelector:focus { 
     outline: none; 
     box-shadow: 0 0 0 2px rgba(255,255,255,0.4); 
 }
