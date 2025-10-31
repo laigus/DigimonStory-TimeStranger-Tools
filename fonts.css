@@ -87,7 +87,8 @@ body[data-font="default"] {
 
 /* 字体选择器样式 */
 .font-selector-wrapper,
-.theme-selector-wrapper {
+.theme-selector-wrapper,
+.color-selector-wrapper {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -99,14 +100,16 @@ body[data-font="default"] {
 }
 
 .font-selector-wrapper label,
-.theme-selector-wrapper label {
+.theme-selector-wrapper label,
+.color-selector-wrapper label {
     font-size: 12px;
     color: #fff;
     letter-spacing: 1px;
 }
 
 #fontSelector,
-#themeSelector {
+#themeSelector,
+#colorSelector {
     border: 1px solid #fff;
     background: rgba(255,255,255,0.85);
     border-radius: 6px;
@@ -115,7 +118,8 @@ body[data-font="default"] {
     cursor: pointer;
 }
 #fontSelector:focus,
-#themeSelector:focus { 
+#themeSelector:focus,
+#colorSelector:focus { 
     outline: none; 
     box-shadow: 0 0 0 2px rgba(255,255,255,0.4); 
 }

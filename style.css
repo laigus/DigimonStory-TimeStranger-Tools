@@ -10,6 +10,42 @@ body {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
     color: #333;
+    transition: background 0.5s ease;
+}
+
+/* ============================================
+   颜色主题配置
+   ============================================ */
+
+/* 紫色梦幻（默认） */
+body[data-color="purple"],
+body:not([data-color]) {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* 海洋蓝 */
+body[data-color="ocean"] {
+    background: linear-gradient(135deg, #2E3192 0%, #1BFFFF 100%);
+}
+
+/* 日落橙 */
+body[data-color="sunset"] {
+    background: linear-gradient(135deg, #FF512F 0%, #F09819 100%);
+}
+
+/* 森林绿 */
+body[data-color="forest"] {
+    background: linear-gradient(135deg, #134E5E 0%, #71B280 100%);
+}
+
+/* 玫瑰粉 */
+body[data-color="rose"] {
+    background: linear-gradient(135deg, #ffdde1 0%, #ee9ca7 100%);
+}
+
+/* 暗夜黑 */
+body[data-color="night"] {
+    background: linear-gradient(135deg, #0F2027 0%, #203A43 50%, #2C5364 100%);
 }
 
 .container {
@@ -1820,9 +1856,9 @@ h1 {
    玻璃材质主题样式
    ============================================ */
 
-body[data-theme="glass"] {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
+/* ============================================
+   玻璃材质主题样式
+   ============================================ */
 
 /* 玻璃效果：左侧数码宝贝列表 */
 body[data-theme="glass"] .digimon-list {
@@ -1848,10 +1884,13 @@ body[data-theme="glass"] #searchInput {
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.4);
     color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    font-weight: 500;
 }
 
 body[data-theme="glass"] #searchInput::placeholder {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.85);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 /* 玻璃效果：数码宝贝列表项 */
@@ -1890,19 +1929,24 @@ body[data-theme="glass"] .tab-navigation {
 
 body[data-theme="glass"] .tab-button {
     background: transparent;
-    color: rgba(255, 255, 255, 0.8);
+    color: #fff;
     border-bottom: 2px solid transparent;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    font-weight: 500;
 }
 
 body[data-theme="glass"] .tab-button:hover {
     background: rgba(255, 255, 255, 0.15);
     color: #fff;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
 }
 
 body[data-theme="glass"] .tab-button.active {
     background: rgba(255, 255, 255, 0.25);
     color: #fff;
     border-bottom-color: rgba(255, 255, 255, 0.8);
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+    font-weight: 600;
 }
 
 /* 玻璃效果：标签页内容 */
@@ -2046,4 +2090,316 @@ body[data-theme="glass"] .notes-hint {
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   水晶玻璃主题样式 - 玲珑剔透，带反光效果
+   ============================================ */
+
+/* 水晶效果：左侧数码宝贝列表 */
+body[data-theme="crystal"] .digimon-list {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 
+        0 8px 32px 0 rgba(31, 38, 135, 0.4),
+        inset 0 0 60px rgba(255, 255, 255, 0.15);
+    position: relative;
+}
+
+/* 添加顶部高光 */
+body[data-theme="crystal"] .digimon-list::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, transparent 100%);
+    border-radius: 15px 15px 0 0;
+    pointer-events: none;
+}
+
+/* 水晶效果：右侧进化图 */
+body[data-theme="crystal"] .evolution-chart {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 
+        0 8px 32px 0 rgba(31, 38, 135, 0.4),
+        inset 0 0 60px rgba(255, 255, 255, 0.15);
+    position: relative;
+}
+
+body[data-theme="crystal"] .evolution-chart::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, transparent 100%);
+    border-radius: 15px 15px 0 0;
+    pointer-events: none;
+}
+
+/* 水晶效果：搜索框 */
+body[data-theme="crystal"] #searchInput {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.2) 100%);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    color: #fff;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    font-weight: 500;
+    box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+body[data-theme="crystal"] #searchInput::placeholder {
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* 水晶效果：数码宝贝列表项 */
+body[data-theme="crystal"] .digimon-item {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+body[data-theme="crystal"] .digimon-item:hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.25) 100%);
+    border-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 
+        0 6px 20px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+body[data-theme="crystal"] .digimon-item.selected {
+    background: linear-gradient(135deg, rgba(58, 123, 213, 0.5) 0%, rgba(58, 123, 213, 0.35) 100%);
+    border-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 
+        0 8px 24px rgba(58, 123, 213, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+body[data-theme="crystal"] .digimon-name {
+    color: #fff;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+body[data-theme="crystal"] .digimon-level {
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* 水晶效果：标签页导航 */
+body[data-theme="crystal"] .tab-navigation {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+body[data-theme="crystal"] .tab-button {
+    background: transparent;
+    color: #fff;
+    border-bottom: 2px solid transparent;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+    font-weight: 500;
+}
+
+body[data-theme="crystal"] .tab-button:hover {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%);
+    color: #fff;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+body[data-theme="crystal"] .tab-button.active {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.2) 100%);
+    color: #fff;
+    border-bottom-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.5),
+        0 4px 12px rgba(0, 0, 0, 0.1);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    font-weight: 600;
+}
+
+/* 水晶效果：标签页内容 */
+body[data-theme="crystal"] .tab-pane {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+}
+
+/* 水晶效果：进化树卡片 */
+body[data-theme="crystal"] .evolution-tree {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* 水晶效果：数码宝贝卡片（进化页面） */
+body[data-theme="crystal"] .digimon-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.2) 100%);
+    backdrop-filter: blur(8px);
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 
+        0 8px 32px 0 rgba(31, 38, 135, 0.25),
+        inset 0 2px 0 rgba(255, 255, 255, 0.6),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.1);
+}
+
+body[data-theme="crystal"] .digimon-card:hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.3) 100%);
+    border-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 
+        0 12px 40px 0 rgba(31, 38, 135, 0.35),
+        inset 0 2px 0 rgba(255, 255, 255, 0.7);
+}
+
+body[data-theme="crystal"] .digimon-card .digimon-name {
+    color: #fff;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+body[data-theme="crystal"] .digimon-card .digimon-level {
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+body[data-theme="crystal"] .digimon-card .digimon-image {
+    border-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+body[data-theme="crystal"] .digimon-card .empty-placeholder {
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+body[data-theme="crystal"] .column-title {
+    color: #fff;
+    text-shadow: 
+        0 2px 10px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(255, 255, 255, 0.3);
+}
+
+body[data-theme="crystal"] .evolution-arrow {
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 
+        0 2px 6px rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+body[data-theme="crystal"] .no-evolution {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+body[data-theme="crystal"] .evolution-node {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.2) 100%);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+body[data-theme="crystal"] .evolution-node .digimon-name {
+    color: #fff;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+body[data-theme="crystal"] .evolution-node .digimon-level {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* 水晶效果：训练项 */
+body[data-theme="crystal"] .training-item {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.15) 100%);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+body[data-theme="crystal"] .training-digimon {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.2) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+body[data-theme="crystal"] .training-digimon.empty {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* 水晶效果：按钮 */
+body[data-theme="crystal"] .delete-btn {
+    background: linear-gradient(135deg, rgba(220, 53, 69, 0.8) 0%, rgba(220, 53, 69, 0.6) 100%);
+    backdrop-filter: blur(5px);
+    box-shadow: 
+        0 4px 12px rgba(220, 53, 69, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+body[data-theme="crystal"] .delete-btn:hover {
+    background: linear-gradient(135deg, rgba(220, 53, 69, 0.9) 0%, rgba(220, 53, 69, 0.75) 100%);
+    box-shadow: 
+        0 6px 16px rgba(220, 53, 69, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+/* 水晶效果：路线规划器 */
+body[data-theme="crystal"] .route-selector-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.15) 100%);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+body[data-theme="crystal"] .route-results {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+body[data-theme="crystal"] .route-step-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.2) 100%);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+body[data-theme="crystal"] .route-summary,
+body[data-theme="crystal"] .route-hint {
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* 水晶效果：笔记区域 */
+body[data-theme="crystal"] #notesTextarea {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.15) 100%);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: #fff;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+body[data-theme="crystal"] #notesTextarea::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+body[data-theme="crystal"] .notes-hint {
+    color: #fff;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.15) 100%);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }

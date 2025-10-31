@@ -58,7 +58,7 @@ function initializeApp() {
     // ===== 主题选择逻辑 =====
     const themeSelector = document.getElementById('themeSelector');
     if (themeSelector) {
-        const allowedThemes = new Set(['default', 'glass']);
+        const allowedThemes = new Set(['default', 'glass', 'crystal']);
         let savedTheme = localStorage.getItem('digimon-theme-choice') || 'default';
         if (!allowedThemes.has(savedTheme)) savedTheme = 'default';
         themeSelector.value = savedTheme;
@@ -68,6 +68,22 @@ function initializeApp() {
             const val = themeSelector.value;
             document.body.setAttribute('data-theme', allowedThemes.has(val) ? val : 'default');
             localStorage.setItem('digimon-theme-choice', val);
+        });
+    }
+
+    // ===== 颜色主题选择逻辑 =====
+    const colorSelector = document.getElementById('colorSelector');
+    if (colorSelector) {
+        const allowedColors = new Set(['purple', 'ocean', 'sunset', 'forest', 'rose', 'night']);
+        let savedColor = localStorage.getItem('digimon-color-choice') || 'purple';
+        if (!allowedColors.has(savedColor)) savedColor = 'purple';
+        colorSelector.value = savedColor;
+        document.body.setAttribute('data-color', savedColor);
+
+        colorSelector.addEventListener('change', () => {
+            const val = colorSelector.value;
+            document.body.setAttribute('data-color', allowedColors.has(val) ? val : 'purple');
+            localStorage.setItem('digimon-color-choice', val);
         });
     }
 
