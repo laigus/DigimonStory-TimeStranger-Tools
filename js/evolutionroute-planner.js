@@ -6,6 +6,7 @@ class EvolutionRoutePlanner {
             sourceId: null,
             targetId: null,
             route: null,
+            routeType: 'shortest', // 'shortest' or 'low-difficulty'
             errorMessage: null
         };
         this.loadState();
@@ -23,6 +24,7 @@ class EvolutionRoutePlanner {
 
             this.state.sourceId = this.validateDigimonId(parsed.sourceId);
             this.state.targetId = this.validateDigimonId(parsed.targetId);
+            this.state.routeType = (parsed.routeType === 'low-difficulty') ? 'low-difficulty' : 'shortest';
 
             if (Array.isArray(parsed.route)) {
                 const sanitizedRoute = parsed.route.filter(id => typeof id === 'number' && digimonMap.has(id));
@@ -42,7 +44,8 @@ class EvolutionRoutePlanner {
             const payload = {
                 sourceId: this.state.sourceId ?? null,
                 targetId: this.state.targetId ?? null,
-                route: Array.isArray(this.state.route) ? this.state.route : null
+                route: Array.isArray(this.state.route) ? this.state.route : null,
+                routeType: this.state.routeType
             };
             localStorage.setItem(ROUTE_STORAGE_KEY, JSON.stringify(payload));
         } catch (error) {
@@ -71,6 +74,40 @@ class EvolutionRoutePlanner {
         const actions = document.createElement('div');
         actions.className = 'route-actions';
 
+        // 路线类型选择器
+        const typeSelector = document.createElement('div');
+        typeSelector.className = 'route-type-selector';
+
+        const typeLabel = document.createElement('label');
+        typeLabel.textContent = '路线类型：';
+        typeLabel.htmlFor = 'routeTypeSelect';
+
+        const typeSelect = document.createElement('select');
+        typeSelect.id = 'routeTypeSelect';
+        typeSelect.className = 'route-type-select';
+
+        const shortestOption = document.createElement('option');
+        shortestOption.value = 'shortest';
+        shortestOption.textContent = '最短路线';
+
+        const lowDifficultyOption = document.createElement('option');
+        lowDifficultyOption.value = 'low-difficulty';
+        lowDifficultyOption.textContent = '低难度路线';
+
+        typeSelect.appendChild(shortestOption);
+        typeSelect.appendChild(lowDifficultyOption);
+        typeSelect.value = this.state.routeType;
+
+        typeSelect.addEventListener('change', () => {
+            this.state.routeType = typeSelect.value;
+            this.resetComputedRoute();
+            this.saveState();
+            this.render();
+        });
+
+        typeSelector.appendChild(typeLabel);
+        typeSelector.appendChild(typeSelect);
+
         const computeBtn = document.createElement('button');
         computeBtn.type = 'button';
         computeBtn.className = 'route-compute-btn';
@@ -82,6 +119,7 @@ class EvolutionRoutePlanner {
         hint.className = 'route-hint';
         hint.textContent = '提示：先在左侧列表选择数码宝贝，再点击上方卡片进行填充。';
 
+        actions.appendChild(typeSelector);
         actions.appendChild(computeBtn);
         actions.appendChild(hint);
 
@@ -208,7 +246,7 @@ class EvolutionRoutePlanner {
     }
 
     calculateRoute() {
-        const { sourceId, targetId } = this.state;
+        const { sourceId, targetId, routeType } = this.state;
         if (!sourceId || !targetId) {
             this.state.errorMessage = '请先选择当前与目标数码宝贝';
             this.state.route = null;
@@ -216,7 +254,10 @@ class EvolutionRoutePlanner {
             return;
         }
 
-        const path = findEvolutionRoute(sourceId, targetId);
+        const path = routeType === 'low-difficulty' 
+            ? findLowDifficultyRoute(sourceId, targetId)
+            : findEvolutionRoute(sourceId, targetId);
+
         if (!path || !path.length) {
             this.state.route = null;
             const sourceName = this.getDigimonName(sourceId);
@@ -281,7 +322,9 @@ class EvolutionRoutePlanner {
         if (digimonPath.length === 1) {
             summary.textContent = '已在目标形态，无需额外进化或退化。';
         } else {
-            summary.textContent = `共需经过 ${digimonPath.length - 1} 次进化或退化。`;
+            const stepCount = digimonPath.length - 1;
+            const routeTypeText = this.state.routeType === 'low-difficulty' ? '低难度路线' : '最短路线';
+            summary.innerHTML = `<strong>${routeTypeText}</strong>：共需经过 ${stepCount} 次进化或退化`;
         }
         this.resultsContainer.appendChild(summary);
 
@@ -392,4 +435,102 @@ function reconstructEvolutionRoute(parentMap, startId, targetId) {
     }
     path.reverse();
     return path;
+}
+
+// 等级权重映射 - 数值越大表示等级越高，难度越大
+const LEVEL_WEIGHTS = {
+    '幼年期Ⅰ': 1,
+    '幼年期Ⅱ': 2,
+    '成长期': 3,
+    '成熟期': 4,
+    '完全体': 5,
+    '究极体': 6,
+    '超究极体': 7
+};
+
+// 获取数码宝贝的等级权重
+function getLevelWeight(digimonId) {
+    const digimon = digimonMap.get(digimonId);
+    if (!digimon || !digimon.level) return 999;
+    return LEVEL_WEIGHTS[digimon.level] ?? 999;
+}
+
+// 计算路径的难度分数（越小越好）
+// 难度 = 路径经过的最高等级权重 * 1000 + 路径长度
+function calculateRouteDifficulty(path) {
+    if (!path || !path.length) return Infinity;
+    
+    let maxWeight = 0;
+    for (const id of path) {
+        const weight = getLevelWeight(id);
+        if (weight > maxWeight) {
+            maxWeight = weight;
+        }
+    }
+    
+    // 优先考虑最高等级（权重大），其次考虑路径长度
+    return maxWeight * 1000 + path.length;
+}
+
+// 使用改进的 Dijkstra 算法寻找低难度路线
+function findLowDifficultyRoute(startId, targetId) {
+    if (typeof startId !== 'number' || typeof targetId !== 'number') return null;
+    if (!digimonMap.has(startId) || !digimonMap.has(targetId)) return null;
+    if (startId === targetId) {
+        return [startId];
+    }
+
+    // 优先队列：[当前节点ID, 当前路径, 当前难度分数]
+    const queue = [[startId, [startId], getLevelWeight(startId)]];
+    const visited = new Map(); // 记录每个节点的最低难度分数
+    let bestRoute = null;
+    let bestDifficulty = Infinity;
+
+    while (queue.length > 0) {
+        // 按难度分数排序，取最小的
+        queue.sort((a, b) => a[2] - b[2]);
+        const [currentId, currentPath, currentMaxWeight] = queue.shift();
+
+        // 如果已经找到更好的完整路径，且当前难度已经超过，则跳过
+        if (currentMaxWeight >= bestDifficulty / 1000) {
+            continue;
+        }
+
+        // 如果到达目标
+        if (currentId === targetId) {
+            const difficulty = calculateRouteDifficulty(currentPath);
+            if (difficulty < bestDifficulty) {
+                bestDifficulty = difficulty;
+                bestRoute = [...currentPath];
+            }
+            continue;
+        }
+
+        // 获取邻居节点
+        const currentDigimon = digimonMap.get(currentId);
+        if (!currentDigimon) continue;
+
+        const neighbors = getEvolutionNeighbors(currentDigimon);
+        
+        for (const neighborId of neighbors) {
+            // 避免循环
+            if (currentPath.includes(neighborId)) continue;
+
+            const neighborWeight = getLevelWeight(neighborId);
+            const newMaxWeight = Math.max(currentMaxWeight, neighborWeight);
+            
+            // 检查是否值得继续探索
+            const existingWeight = visited.get(neighborId);
+            if (existingWeight !== undefined && existingWeight <= newMaxWeight) {
+                continue;
+            }
+
+            visited.set(neighborId, newMaxWeight);
+            
+            const newPath = [...currentPath, neighborId];
+            queue.push([neighborId, newPath, newMaxWeight]);
+        }
+    }
+
+    return bestRoute;
 }
