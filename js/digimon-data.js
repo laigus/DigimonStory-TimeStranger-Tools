@@ -1640,7 +1640,7 @@ const digimonData = [
         name: "天女兽",
         level: "完全体",
         image: getDigimonImagePath("天女兽"),
-        evolvesTo: [337, 410, 336, 314], // 莫斯提兽, 朱诺兽, 圣龙兽, 座天使兽
+        evolvesTo: [337, 410, 314, 336], // 莫斯提兽, 朱诺兽, 座天使兽, 圣龙兽
         evolvesFrom: [110, 97, 105, 113]
     },
     {
@@ -1928,7 +1928,7 @@ const digimonData = [
         name: "骷髅巨犀兽",
         level: "完全体",
         image: getDigimonImagePath("骷髅巨犀兽"),
-        evolvesTo: [324, 442], // 骷髅猛犸兽, 泰坦+骷髅巨犀兽
+        evolvesTo: [324, 442], // 骷髅猛犸兽, 泰坦兽+骷髅巨犀兽
         evolvesFrom: [157, 171, 471]
     },
     {
@@ -3096,7 +3096,7 @@ const digimonData = [
         name: "泰坦兽",
         level: "究极体",
         image: getDigimonImagePath("泰坦兽"),
-        evolvesTo: [442], // 泰坦+骷髅巨犀兽
+        evolvesTo: [442], // 泰坦兽+骷髅巨犀兽
         evolvesFrom: [281, 243, 278]
     },
     {
@@ -3481,7 +3481,7 @@ const digimonData = [
         level: "超究极体",
         image: getDigimonImagePath("混沌兽瓦尔德臂"),
         evolvesTo: [],
-        evolvesFrom: [310, 432]
+        evolvesFrom: [333, 310]
     },
     {
         id: 434,
@@ -3549,9 +3549,9 @@ const digimonData = [
     },
     {
         id: 442,
-        name: "泰坦+骷髅巨犀兽",
+        name: "泰坦兽+骷髅巨犀兽",
         level: "超究极体",
-        image: getDigimonImagePath("泰坦+骷髅巨犀兽"),
+        image: getDigimonImagePath("泰坦兽+骷髅巨犀兽"),
         evolvesTo: [],
         evolvesFrom: [239, 385]
     },
