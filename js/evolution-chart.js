@@ -132,8 +132,24 @@ function createDigimonCard(digimon) {
     card.className = 'digimon-card';
     card.dataset.id = digimon.id;
     
+    // 创建图片容器
+    const imageContainer = document.createElement('div');
+    imageContainer.className = 'card-image-container';
+    
     // 创建智能图片元素
     const imageElement = createSmartImage(digimon, 'digimon-image');
+    imageContainer.appendChild(imageElement);
+    
+    // 创建查看按钮
+    const viewBtn = document.createElement('button');
+    viewBtn.className = 'card-view-btn';
+    viewBtn.innerHTML = '🔍';
+    viewBtn.title = '查看大图';
+    viewBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); // 防止触发卡片点击事件
+        viewFullImage(digimon);
+    });
+    imageContainer.appendChild(viewBtn);
     
     // 创建名称元素
     const nameDiv = document.createElement('div');
@@ -146,7 +162,7 @@ function createDigimonCard(digimon) {
     levelDiv.textContent = digimon.level;
     
     // 组装卡片
-    card.appendChild(imageElement);
+    card.appendChild(imageContainer);
     card.appendChild(nameDiv);
     card.appendChild(levelDiv);
     

@@ -11,7 +11,6 @@ const ROUTE_STORAGE_KEY = 'digimon-route-planner';
 // 应用实例
 let selectedDigimon = null;
 let filteredDigimon = digimonData;
-let imageManager;
 let tabManager;
 let trainingManager;
 let trainingCategoryManager;
@@ -24,7 +23,6 @@ function initializeApp() {
     addKeyboardSupport();
     addTouchSupport();
 
-    imageManager = new ImageManager();
     tabManager = new TabManager();
     evolutionRoutePlanner = new EvolutionRoutePlanner();
     trainingManager = new TrainingManager();

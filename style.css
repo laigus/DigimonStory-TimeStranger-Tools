@@ -157,7 +157,7 @@ h1 {
     flex: 1;
 }
 
-.edit-image-btn {
+.view-image-btn {
     position: absolute;
     right: 8px;
     top: 50%;
@@ -165,31 +165,34 @@ h1 {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background: #667eea;
-    color: white;
-    border: none;
+    border: 2px solid #667eea;
+    background: rgba(255, 255, 255, 0.95);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
+    font-size: 16px;
     transition: all 0.3s ease;
     opacity: 0;
+    transform: translateY(-50%) scale(0.8);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     z-index: 10;
 }
 
-.digimon-item:hover .edit-image-btn {
+.digimon-item:hover .view-image-btn {
     opacity: 1;
+    transform: translateY(-50%) scale(1);
 }
 
-.edit-image-btn:hover {
-    background: #5a6fd8;
+.view-image-btn:hover {
+    background: #667eea;
     transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
 }
 
-.digimon-item.selected .edit-image-btn {
-    background: #764ba2;
+.digimon-item.selected .view-image-btn {
     opacity: 1;
+    border-color: #764ba2;
 }
 
 .digimon-image {
@@ -1457,6 +1460,44 @@ h1 {
     color: #666;
 }
 
+/* 卡片图片容器 */
+.card-image-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* 卡片查看按钮 */
+.card-view-btn {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid #667eea;
+    background: rgba(255, 255, 255, 0.95);
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: scale(0.8);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-image-container:hover .card-view-btn {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.card-view-btn:hover {
+    background: #667eea;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
 .column-title {
     font-size: 20px;
     font-weight: bold;
@@ -1552,306 +1593,6 @@ h1 {
     background: #667eea;
     border-radius: 4px;
 }
-
-
-/* 图片管理模态框样式 */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(5px);
-}
-
-.modal-content {
-    background-color: white;
-    margin: 2% auto;
-    padding: 0;
-    border-radius: 15px;
-    width: 90%;
-    max-width: 900px;
-    max-height: 90vh;
-    overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    animation: modalSlideIn 0.3s ease;
-}
-
-@keyframes modalSlideIn {
-    from { transform: translateY(-50px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 25px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-}
-
-.modal-header h2 {
-    margin: 0;
-    font-size: 1.5em;
-}
-
-.close {
-    color: white;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: color 0.3s;
-}
-
-.close:hover {
-    color: #ddd;
-}
-
-.modal-body {
-    padding: 25px;
-    max-height: calc(90vh - 80px);
-    overflow-y: auto;
-}
-
-.image-manager {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 25px;
-}
-
-.current-digimon-info {
-    grid-column: 1 / -1;
-    background: #f8f9fa;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-}
-
-.digimon-details {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.digimon-info h3 {
-    margin: 0;
-    color: #333;
-    font-size: 1.3em;
-}
-
-.digimon-info p {
-    margin: 5px 0 0 0;
-    color: #666;
-    font-size: 0.9em;
-}
-
-.current-image-preview {
-    text-align: center;
-}
-
-#currentImagePreview {
-    max-width: 80px;
-    max-height: 80px;
-    border-radius: 8px;
-    border: 2px solid #ddd;
-}
-
-.no-image-placeholder {
-    width: 80px;
-    height: 80px;
-    background: #e9ecef;
-    border: 2px dashed #adb5bd;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    color: #6c757d;
-}
-
-.upload-area {
-    background: #f8f9fa;
-    border: 3px dashed #667eea;
-    border-radius: 15px;
-    padding: 30px;
-    text-align: center;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-.upload-area:hover {
-    border-color: #5a6fd8;
-    background: #e7f3ff;
-}
-
-.upload-area.dragover {
-    border-color: #28a745;
-    background: #d4edda;
-}
-
-.upload-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-}
-
-.upload-icon {
-    font-size: 3em;
-    color: #667eea;
-}
-
-.upload-area p {
-    margin: 0;
-    color: #666;
-}
-
-.upload-hint {
-    font-size: 0.9em;
-    color: #999 !important;
-}
-
-.operation-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.btn {
-    padding: 12px 20px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    text-align: center;
-}
-
-.btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-.btn-primary {
-    background: #667eea;
-    color: white;
-}
-
-.btn-primary:hover:not(:disabled) {
-    background: #5a6fd8;
-}
-
-.btn-success {
-    background: #28a745;
-    color: white;
-}
-
-.btn-success:hover:not(:disabled) {
-    background: #218838;
-}
-
-.btn-danger {
-    background: #dc3545;
-    color: white;
-}
-
-.btn-danger:hover:not(:disabled) {
-    background: #c82333;
-}
-
-.btn-warning {
-    background: #ffc107;
-    color: #212529;
-}
-
-.btn-warning:hover:not(:disabled) {
-    background: #e0a800;
-}
-
-.btn-info {
-    background: #17a2b8;
-    color: white;
-}
-
-.btn-info:hover:not(:disabled) {
-    background: #138496;
-}
-
-.save-notice {
-    margin-top: 15px;
-    padding: 12px;
-    background: #e3f2fd;
-    border: 1px solid #bbdefb;
-    border-radius: 6px;
-    text-align: center;
-}
-
-.save-notice small {
-    color: #1976d2;
-    line-height: 1.4;
-}
-
-.save-notice code {
-    background: #fff;
-    padding: 2px 6px;
-    border-radius: 3px;
-    font-family: monospace;
-    color: #d32f2f;
-}
-
-.preview-area {
-    background: #f8f9fa;
-    border-radius: 10px;
-    padding: 20px;
-}
-
-.preview-area h3 {
-    margin: 0 0 15px 0;
-    color: #333;
-}
-
-.preview-container {
-    text-align: center;
-    min-height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#previewImage {
-    max-width: 100%;
-    max-height: 300px;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.preview-placeholder {
-    color: #999;
-    font-style: italic;
-}
-
-/* 响应式设计 */
-@media (max-width: 768px) {
-    .modal-content {
-        width: 95%;
-        margin: 5% auto;
-    }
-    
-    .image-manager {
-        grid-template-columns: 1fr;
-    }
-    
-    .current-digimon-info {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-}
-
 /* ============================================
    玻璃材质主题样式
    ============================================ */
@@ -1918,6 +1659,22 @@ body[data-theme="glass"] .digimon-name {
 body[data-theme="glass"] .digimon-level {
     color: rgba(255, 255, 255, 0.85);
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+body[data-theme="glass"] .view-image-btn {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+}
+
+body[data-theme="glass"] .view-image-btn:hover {
+    background: rgba(255, 255, 255, 0.5);
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+body[data-theme="glass"] .digimon-item.selected .view-image-btn {
+    border-color: rgba(118, 75, 162, 0.8);
+    background: rgba(255, 255, 255, 0.35);
 }
 
 /* 玻璃效果：标签页导航 */
@@ -1991,6 +1748,17 @@ body[data-theme="glass"] .digimon-card .digimon-image {
 
 body[data-theme="glass"] .digimon-card .empty-placeholder {
     border-color: rgba(255, 255, 255, 0.4);
+}
+
+body[data-theme="glass"] .card-view-btn {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+}
+
+body[data-theme="glass"] .card-view-btn:hover {
+    background: rgba(255, 255, 255, 0.5);
+    border-color: rgba(255, 255, 255, 0.8);
 }
 
 body[data-theme="glass"] .column-title {
@@ -2200,6 +1968,28 @@ body[data-theme="crystal"] .digimon-level {
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
+body[data-theme="crystal"] .view-image-btn {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.25) 100%);
+    border-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(8px);
+    box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+body[data-theme="crystal"] .view-image-btn:hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.4) 100%);
+    border-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 
+        0 4px 12px rgba(102, 126, 234, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+body[data-theme="crystal"] .digimon-item.selected .view-image-btn {
+    border-color: rgba(118, 75, 162, 0.9);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.35) 100%);
+}
+
 /* 水晶效果：标签页导航 */
 body[data-theme="crystal"] .tab-navigation {
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.15) 100%);
@@ -2283,6 +2073,23 @@ body[data-theme="crystal"] .digimon-card .digimon-image {
 
 body[data-theme="crystal"] .digimon-card .empty-placeholder {
     border-color: rgba(255, 255, 255, 0.6);
+}
+
+body[data-theme="crystal"] .card-view-btn {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.25) 100%);
+    border-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(8px);
+    box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+body[data-theme="crystal"] .card-view-btn:hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.4) 100%);
+    border-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 
+        0 4px 12px rgba(102, 126, 234, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 body[data-theme="crystal"] .column-title {
@@ -2402,4 +2209,117 @@ body[data-theme="crystal"] .notes-hint {
     border: 1px solid rgba(255, 255, 255, 0.5);
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+/* ============================================
+   图片查看模态框
+   ============================================ */
+
+.image-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.image-modal-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.image-modal-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    color: #fff;
+    font-size: 30px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.image-modal-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+.image-modal-img {
+    max-width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+    border-radius: 15px;
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    backdrop-filter: blur(5px);
+}
+
+.image-modal-title {
+    margin-top: 20px;
+    padding: 15px 30px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.image-modal-title .digimon-name {
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.image-modal-title .digimon-level {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+    padding: 4px 12px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 }

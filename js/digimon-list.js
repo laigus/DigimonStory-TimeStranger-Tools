@@ -68,21 +68,21 @@ function createDigimonListItem(digimon) {
         <div class="digimon-level">${digimon.level}</div>
     `;
     
-    // 创建编辑图标
-    const editBtn = document.createElement('button');
-    editBtn.className = 'edit-image-btn';
-    editBtn.innerHTML = '✏️';
-    editBtn.title = '编辑图片';
-    editBtn.addEventListener('click', (e) => {
+    // 创建查看图标
+    const viewBtn = document.createElement('button');
+    viewBtn.className = 'view-image-btn';
+    viewBtn.innerHTML = '🔍';
+    viewBtn.title = '查看大图';
+    viewBtn.addEventListener('click', (e) => {
         e.stopPropagation(); // 防止触发选择数码宝贝
-        openImageEditor(digimon);
+        viewFullImage(digimon);
     });
     
     // 组装元素
     contentDiv.appendChild(imageElement);
     contentDiv.appendChild(infoDiv);
     item.appendChild(contentDiv);
-    item.appendChild(editBtn);
+    item.appendChild(viewBtn);
     
     // 点击主体区域选择数码宝贝
     contentDiv.addEventListener('click', () => selectDigimon(digimon));
@@ -118,4 +118,85 @@ function scrollToDigimonInList(digimon) {
             block: 'center'
         });
     }
+}
+
+// 查看完整图片
+function viewFullImage(digimon) {
+    // 创建模态框
+    const modal = document.createElement('div');
+    modal.className = 'image-modal';
+    
+    // 创建模态框内容
+    const modalContent = document.createElement('div');
+    modalContent.className = 'image-modal-content';
+    
+    // 创建关闭按钮
+    const closeBtn = document.createElement('button');
+    closeBtn.className = 'image-modal-close';
+    closeBtn.innerHTML = '×';
+    closeBtn.onclick = () => {
+        document.body.removeChild(modal);
+    };
+    
+    // 创建图片元素
+    const img = document.createElement('img');
+    img.className = 'image-modal-img';
+    img.alt = digimon.name;
+    
+    // 尝试多种图片格式
+    const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp'];
+    let currentExtensionIndex = 0;
+    
+    function tryLoadImage() {
+        if (currentExtensionIndex < imageExtensions.length) {
+            const extension = imageExtensions[currentExtensionIndex];
+            const imagePath = `picture/${digimon.name}${extension}`;
+            img.src = imagePath;
+            
+            img.onerror = () => {
+                currentExtensionIndex++;
+                tryLoadImage();
+            };
+        } else {
+            // 如果所有格式都失败，使用占位符
+            img.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400"><rect width="400" height="400" fill="%23f0f0f0"/><text x="50%" y="50%" text-anchor="middle" fill="%23999" font-size="20">图片未找到</text></svg>';
+        }
+    }
+    
+    tryLoadImage();
+    
+    // 创建图片标题
+    const title = document.createElement('div');
+    title.className = 'image-modal-title';
+    title.innerHTML = `
+        <span class="digimon-name">${digimon.name}</span>
+        <span class="digimon-level">${digimon.level}</span>
+    `;
+    
+    // 组装模态框
+    modalContent.appendChild(closeBtn);
+    modalContent.appendChild(img);
+    modalContent.appendChild(title);
+    modal.appendChild(modalContent);
+    
+    // 添加到body
+    document.body.appendChild(modal);
+    
+    // 点击模态框背景关闭
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            document.body.removeChild(modal);
+        }
+    });
+    
+    // ESC键关闭
+    const escapeHandler = (e) => {
+        if (e.key === 'Escape') {
+            if (document.body.contains(modal)) {
+                document.body.removeChild(modal);
+            }
+            document.removeEventListener('keydown', escapeHandler);
+        }
+    };
+    document.addEventListener('keydown', escapeHandler);
 }

@@ -50,9 +50,8 @@ DigimonStory-TimeStranger-Tools/
 ├── js/
 │   ├── main.js                     # 主文件：全局变量、初始化、键盘支持等
 │   ├── utils.js                    # 工具函数：图片加载、拼音处理等
-│   ├── image-manager.js            # 图片管理：上传、编辑、保存图片等
 │   ├── digimon-data.js             # 数码宝贝数据
-│   ├── digimon-list.js             # 数码宝贝列表：搜索、渲染、选择等
+│   ├── digimon-list.js             # 数码宝贝列表：搜索、渲染、选择、图片查看等
 │   ├── tab-manager.js              # 标签页管理：进化/训练标签页切换、切换动画、状态管理等
 │   ├── evolution-chart.js          # 进化图：进化路线展示、图表渲染等
 │   ├── evolutionroute-planner.js   # 进化路线规划：根据选择的两个数码宝贝计算进化路线

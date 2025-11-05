@@ -122,53 +122,9 @@
             </div>
         </div>
     </div>
-    
-    <!-- 图片管理模态框 -->
-    <div id="imageManagerModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 id="modalTitle">编辑图片</h2>
-                <span class="close" id="closeModal">&times;</span>
-            </div>
-            <div class="modal-body">
-                <div class="image-manager">
-                    <div class="image-operations">
-                        <div class="upload-area" id="uploadArea">
-                            <div class="upload-content">
-                                <div class="upload-icon">📁</div>
-                                <p>拖拽图片到这里或点击选择</p>
-                                <p class="upload-hint">支持 JPG、PNG、GIF、WEBP 格式</p>
-                                <input type="file" id="imageInput" accept="image/*" style="display: none;">
-                                <button type="button" id="selectImageBtn" class="btn btn-primary">选择图片</button>
-                            </div>
-                        </div>
-                        
-                        <div class="operation-buttons">
-                            <button id="saveImageBtn" class="btn btn-success" disabled>保存图片</button>
-                            <div class="save-notice">
-                                <small>💡 图片将保存到浏览器缓存，并自动下载到你的下载文件夹。<br>
-                                请将下载的图片文件移动到项目的 <code>picture</code> 文件夹中以永久保存。</small>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="preview-area">
-                        <h3>预览</h3>
-                        <div class="preview-container">
-                            <img id="previewImage" src="" alt="预览图片" style="display: none;">
-                            <div id="previewPlaceholder" class="preview-placeholder">
-                                预览区域
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <script src="js/digimon-data.js"></script>
     <script src="js/utils.js"></script>
-    <script src="js/image-manager.js"></script>
     <script src="js/tab-manager.js"></script>
     <script src="js/digimon-list.js"></script>
     <script src="js/evolution-chart.js"></script>
