@@ -262,8 +262,22 @@ h1 {
     text-overflow: ellipsis;
 }
 
+.digimon-id {
+    font-size: 11px;
+    opacity: 0.6;
+    color: #999;
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .digimon-item.selected .digimon-level {
     color: #e3f2fd;
+}
+
+.digimon-item.selected .digimon-id {
+    color: #bbdefb;
 }
 
 /* 右侧进化路线图样式 */

@@ -360,7 +360,7 @@ const digimonData = [
         name: "加布兽",
         level: "成长期",
         image: getDigimonImagePath("加布兽"),
-        evolvesTo: [87, 82, 131, 117, 148], // 加鲁鲁兽, 海狮兽, 钻头鼹鼠兽, 九尾兽, 卑劣兽, 加布兽友情纽带
+        evolvesTo: [87, 82, 131, 117, 148, 451], // 加鲁鲁兽, 海狮兽, 钻头鼹鼠兽, 九尾兽, 卑劣兽, 加布兽友情纽带
         evolvesFrom: [11]
     },
     {
@@ -3621,9 +3621,9 @@ const digimonData = [
     },
     {
         id: 451,
-        name: "加布兽勇气纽带",
+        name: "加布兽友情纽带",
         level: "超究极体",
-        image: getDigimonImagePath("加布兽勇气纽带"),
+        image: getDigimonImagePath("加布兽友情纽带"),
         evolvesTo: [],
         evolvesFrom: [43]
     },

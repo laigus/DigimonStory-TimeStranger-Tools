@@ -66,6 +66,7 @@ function createDigimonListItem(digimon) {
     infoDiv.innerHTML = `
         <div class="digimon-name">${digimon.name}</div>
         <div class="digimon-level">${digimon.level}</div>
+        <div class="digimon-id">ID: ${digimon.id}</div>
     `;
     
     // 创建查看图标
