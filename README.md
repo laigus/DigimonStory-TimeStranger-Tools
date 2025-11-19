@@ -52,11 +52,10 @@ DigimonStory-TimeStranger-Tools/
 │   ├── utils.js                    # 工具函数：图片加载、拼音处理等
 │   ├── digimon-data.js             # 数码宝贝数据
 │   ├── digimon-list.js             # 数码宝贝列表：搜索、渲染、选择、图片查看等
-│   ├── tab-manager.js              # 标签页管理：进化/训练标签页切换、切换动画、状态管理等
+│   ├── tab-manager.js              # 标签页管理：进化/训练/个性/备注切换、动画、状态管理等
 │   ├── evolution-chart.js          # 进化图：进化路线展示、图表渲染等
 │   ├── evolutionroute-planner.js   # 进化路线规划：根据选择的两个数码宝贝计算进化路线
-│   ├── training-manager.js         # 训练管理：训练项管理、数码宝贝选择等
-│   ├── training2-manager.js        # 训练管理2：根据属性分类选择数码宝贝训练
+│   ├── training-manager.js         # 训练管理：根据属性分类选择数码宝贝训练
 │   ├── personnality-chart.js       # 个性图表：显示个性方向、属性对应关系等
 │   └── notes-manager.js            # 备注管理：添加、删除、保存备注等
 └── data-preprocess/                # 数据预处理相关
@@ -106,7 +105,6 @@ DigimonStory-TimeStranger-Tools/
 ## 待修复的问题
 
 - 字体加载有问题
-- 训练列表中，选择数码宝贝后，列变高抖动
 
 ## 未来可能考虑的功能
 

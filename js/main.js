@@ -3,7 +3,6 @@ const searchInput = document.getElementById('searchInput');
 const digimonListContainer = document.getElementById('digimonListContainer');
 
 // 存储键
-const TRAINING_STORAGE_KEY = 'digimon-training-items';
 const NOTES_STORAGE_KEY = 'digimon-notes-content';
 const TRAINING_CATEGORY_STORAGE_KEY = 'digimon-training2-items';
 const ROUTE_STORAGE_KEY = 'digimon-route-planner';
@@ -12,7 +11,6 @@ const ROUTE_STORAGE_KEY = 'digimon-route-planner';
 let selectedDigimon = null;
 let filteredDigimon = digimonData;
 let tabManager;
-let trainingManager;
 let trainingCategoryManager;
 let evolutionRoutePlanner;
 
@@ -25,8 +23,8 @@ function initializeApp() {
 
     tabManager = new TabManager();
     evolutionRoutePlanner = new EvolutionRoutePlanner();
-    trainingManager = new TrainingManager();
     trainingCategoryManager = new TrainingCategoryManager();
+    localStorage.removeItem('digimon-training-items'); // 清理已废弃的训练页数据
     renderPersonalityChart();
     initializeNotesPane();
         

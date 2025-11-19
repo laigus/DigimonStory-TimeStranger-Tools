@@ -386,37 +386,6 @@ h1 {
     to   { transform: translateX(100%); opacity: 0; }
 }
 
-/* 训练页面样式 */
-.training-container {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    padding: 0px;
-    box-sizing: border-box;
-}
-
-.training-list {
-    flex: 1;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: #667eea #f0f0f0;
-    padding-top: 5px;
-}
-
-.training-list::-webkit-scrollbar {
-    width: 8px;
-}
-
-.training-list::-webkit-scrollbar-track {
-    background: #f0f0f0;
-    border-radius: 4px;
-}
-
-.training-list::-webkit-scrollbar-thumb {
-    background: #667eea;
-    border-radius: 4px;
-}
-
 .training-item {
     display: flex;
     align-items: center;
@@ -457,16 +426,6 @@ h1 {
     pointer-events: auto;
 }
 
-.training-action.add-btn {
-    background: #28a745;
-    color: white;
-}
-
-.training-action.add-btn:hover {
-    background: #218838;
-    transform: scale(1.1);
-}
-
 .training-action.remove-btn {
     background: #dc3545;
     color: white;
@@ -475,42 +434,6 @@ h1 {
 .training-action.remove-btn:hover {
     background: #c82333;
     transform: scale(1.1);
-}
-
-.training-label {
-    flex: 0 0 210px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 6px;
-    font-weight: 600;
-    color: #343a40;
-    text-align: left;
-    padding: 10px 14px;
-    background: #e9ecef;
-    border-radius: 6px;
-    margin-right: 15px;
-    box-sizing: border-box;
-}
-
-.training-name {
-    font-size: 15px;
-    color: #212529;
-}
-
-.training-meta {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    font-weight: 500;
-    font-size: 12px;
-    color: #495057;
-}
-
-.training-meta span {
-    display: block;
-    line-height: 1.2;
 }
 
 .training-digimon {
@@ -1146,7 +1069,7 @@ h1 {
     }
 }
 
-/* 训练2标签页 */
+/* 训练标签页 */
 .training2-container {
     height: 100%;
     padding: 20px 24px 35px;
@@ -1285,38 +1208,6 @@ h1 {
     flex-direction: column;
     height: 100%;
     min-width: 0;
-}
-
-/* 训练容器样式 */
-.training-container {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.training-container .no-selection {
-    text-align: center;
-    color: #666;
-}
-
-.training-container .no-selection ul {
-    list-style: none;
-    padding: 0;
-    margin-top: 20px;
-}
-
-.training-container .no-selection li {
-    padding: 8px 0;
-    color: #888;
-    position: relative;
-    padding-left: 20px;
-}
-
-.training-container .no-selection li::before {
-    content: "🔸";
-    position: absolute;
-    left: 0;
 }
 
 .chart-container {

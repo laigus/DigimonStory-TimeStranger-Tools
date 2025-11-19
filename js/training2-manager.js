@@ -241,7 +241,7 @@ class TrainingCategoryManager {
 
             return true;
         } catch (error) {
-            console.error('加载训练2配置失败', error);
+            console.error('加载训练配置失败', error);
             return false;
         }
     }
@@ -261,7 +261,7 @@ class TrainingCategoryManager {
             };
             localStorage.setItem(TRAINING_CATEGORY_STORAGE_KEY, JSON.stringify(payload));
         } catch (error) {
-            console.error('保存训练2配置失败', error);
+            console.error('保存训练配置失败', error);
         }
     }
 }
